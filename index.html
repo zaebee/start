@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Контрольная: Миссия программиста — Turtle & Python</title>
+  <style>
+    body{font-family: system-ui, -apple-system, Roboto, "Segoe UI", Arial; margin:20px; background:#f7fbff; color:#102a43}
+    h1,h2{color:#0b3d91}
+    .container{max-width:980px;margin:0 auto}
+    section{background:#fff;border-radius:10px;padding:16px;margin-bottom:18px;box-shadow:0 2px 8px rgba(10,20,40,0.06)}
+    textarea{width:100%;height:180px;font-family:monospace;font-size:14px;padding:10px;border-radius:6px;border:1px solid #dbe4ff;box-sizing:border-box}
+    pre{background:#0b3d91;color:#fff;padding:10px;border-radius:6px;overflow:auto}
+    .controls{display:flex;gap:8px;margin-top:8px}
+    button{background:#0b3d91;color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer}
+    button.secondary{background:#2b7a78}
+    .output{background:#001f3f;color:#e6f6ff;padding:10px;border-radius:6px;min-height:80px;white-space:pre-wrap}
+    .meta{display:flex;justify-content:space-between;align-items:center}
+    .timer{font-weight:700;color:#c92a2a}
+    .hint{background:#eef6ff;padding:8px;border-radius:6px;border:1px dashed #bcd4ff}
+    .small{font-size:13px;color:#445}
+    .row{display:flex;gap:12px}
+    .col{flex:1}
+    .turtle-canvas{border:1px solid #ddd;background:#fff}
+  </style>
+  <!-- Skulpt from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Контрольная: «Миссия программиста» — Turtle & Python</h1>
+    <p class="small">Инструкция: откройте этот HTML в <strong>Trinket (HTML)</strong> или в любом браузере. У вас 40 минут — нажмите <em>Старт</em> и начинайте выполнять уровни. Для запуска кода нажимайте <em>Run</em> под нужной задачей. (Skulpt выполняет Python прямо в браузере; модуль turtle имитирован через canvas.)</p>
+
+    <div class="meta">
+      <div>Времени на выполнение: <strong>40 минут</strong></div>
+      <div class="timer" id="timer">40:00</div>
+    </div>
+
+    <section>
+      <h2>Уровень 1 — Разогрев (5 баллов)</h2>
+      <p class="hint">Задача: запросить имя игрока и вывести приветствие. Запишите программу в редакторе ниже и нажмите <strong>Run</strong>.</p>
+      <textarea id="code1"># Уровень 1: Введите своё имя и поприветствуйте
+name = input('Как тебя зовут? ')
+print('Привет, ' + name + '! Добро пожаловать в игру!')
+</textarea>
+      <div class="controls">
+        <button onclick="runCode('code1','output1')">Run</button>
+        <button class="secondary" onclick="copyToTrinket('code1')">Copy for Trinket</button>
+      </div>
+      <div id="output1" class="output"></div>
+    </section>
+
+    <section>
+      <h2>Уровень 2 — Логика и условия (10 баллов)</h2>
+      <p class="hint">Мини-игра «Угадай число»: компьютер загадывает число от 1 до 10, пользователь вводит попытку. Используйте модуль random (в Skulpt: замена через randint).</p>
+      <textarea id="code2"># Уровень 2: Угадай число (1–10)
+import random
+number = random.randint(1, 10)
+guess = int(input('Угадай число от 1 до 10: '))
+if guess == number:
+    print('Ты волшебник!')
+else:
+    print('Не угадал! Было', number)
+</textarea>
+      <div class="controls">
+        <button onclick="runCode('code2','output2')">Run</button>
+        <button class="secondary" onclick="copyToTrinket('code2')">Copy for Trinket</button>
+      </div>
+      <div id="output2" class="output"></div>
+    </section>
+
+    <section>
+      <h2>Уровень 3 — Циклы и функции (15 баллов)</h2>
+      <p class="hint">Напишите функцию <code>square(size)</code>, которая рисует квадрат в canvas-turtle (Skulpt turtle). Введите размер стороны и вызовите функцию.</p>
+      <div class="row">
+        <div class="col">
+          <textarea id="code3"># Уровень 3: Функция square(size) с turtle
+import turtle
+
+screen = turtle.Screen()
+canvas = screen.getcanvas()
+
+t = turtle.Turtle()
+
+def square(size):
+    for i in range(4):
+        t.forward(size)
+        t.right(90)
+
+size = int(input('Размер квадрата: '))
+square(size)
+print('Готово!')
+</textarea>
+        </div>
+      </div>
+      <div class="controls">
+        <button onclick="runCode('code3','output3')">Run</button>
+        <button class="secondary" onclick="copyToTrinket('code3')">Copy for Trinket</button>
+      </div>
+      <div id="output3" class="output"></div>
+    </section>
+
+    <section>
+      <h2>Уровень 4 — Суперзадание (20 баллов)</h2>
+      <p class="hint">Новогодняя открытка: нарисовать несколько снежинок в случайных позициях, добавить подпись. Используйте функцию и цикл. (Можно скопировать шаблон и изменить.)</p>
+      <textarea id="code4"># Уровень 4: Новогодняя открытка с несколькими снежинками
+import turtle, random
+
+screen = turtle.Screen()
+screen.setup(600,600)
+
+s = turtle.Turtle()
+s.speed(0)
+
+colors = ['blue','cyan','purple','lightblue']
+
+def snowflake(size, count):
+    for i in range(count):
+        s.forward(size)
+        s.backward(size)
+        s.right(360 / count)
+
+for i in range(5):
+    s.penup()
+    s.goto(random.randint(-250,250), random.randint(-200,200))
+    s.pendown()
+    s.color(random.choice(colors))
+    snowflake(random.randint(20, 60), random.randint(6, 12))
+
+s.penup()
+s.goto(-150, -250)
+s.pendown()
+s.color('black')
+s.write('С Новым годом!', font=('Arial', 18, 'bold'))
+print('Открытка готова!')
+</textarea>
+      <div class="controls">
+        <button onclick="runCode('code4','output4')">Run</button>
+        <button class="secondary" onclick="copyToTrinket('code4')">Copy for Trinket</button>
+      </div>
+      <div id="output4" class="output"></div>
+    </section>
+
+    <section>
+      <h2>Подсказки для учителя</h2>
+      <ul>
+        <li>Скажите ученикам: <em>сначала</em> протестируйте код в поле вывода, потом скопируйте в ваш Python-runner (Trinket) и сдавайте.</li>
+        <li>Если Skulpt не поддерживает какую-то функцию turtle в вашем окружении, ученики могут запустить код в Trinket (Python) — там turtle работает нормально.</li>
+        <li>Оценивание: 40 минут, суммарно до 50 баллов + до 5 бонусных за креатив.</li>
+      </ul>
+    </section>
+
+  </div>
+
+<script>
+// Timer
+let total = 40*60; // seconds
+const timerEl = document.getElementById('timer');
+let timerInterval;
+function startTimer(){
+  clearInterval(timerInterval);
+  let t = total;
+  timerInterval = setInterval(()=>{
+    if(t<=0){ clearInterval(timerInterval); timerEl.textContent='00:00'; return; }
+    let m = Math.floor(t/60); let s = t%60; 
+    timerEl.textContent = String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+    t -= 1;
+  },1000);
+}
+startTimer();
+
+// Skulpt runner
+function outf(text) {
+    return text;
+}
+function builtinRead(x) {
+    if (Sk.builtinFiles === undefined || Sk.builtinFiles['files'][x] === undefined) {
+        throw "File not found: '" + x + "'";
+    }
+    return Sk.builtinFiles['files'][x];
+}
+
+function runCode(textareaId, outputId) {
+    const prog = document.getElementById(textareaId).value;
+    const outputEl = document.getElementById(outputId);
+    outputEl.textContent = '';
+    Sk.configure({
+        output: function(txt){ outputEl.textContent += txt; },
+        read: builtinRead,
+        inputfun: function(prompt){ return window.prompt(prompt); },
+        inputfunTakesPrompt: true
+    });
+    (Sk.misceval.asyncToPromise(function() {
+        return Sk.importMainWithBody('<stdin>', false, prog, true);
+    })).catch(function(err) {
+        outputEl.textContent += err.toString();
+    });
+}
+
+// Copy to Trinket helper: just copies code to clipboard so teacher/students paste to Trinket
+function copyToTrinket(textareaId){
+    const code = document.getElementById(textareaId).value;
+    navigator.clipboard.writeText(code).then(()=>{
+        alert('Код скопирован в буфер обмена. Вставьте в Trinket и запустите.');
+    }).catch(()=>{ alert('Не удалось скопировать — выделите и нажмите Ctrl+C'); });
+}
+</script>
+</body>
+</html>
