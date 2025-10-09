@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Финальное занятие — Поймай квадрат 🎮</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at top, #202020, #111);
+      color: #f3f3f3;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    header {
+      padding: 2rem 1rem 1rem;
+      animation: fadeIn 1.5s ease;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin: 0.5rem 0;
+    }
+
+    p.tagline {
+      font-size: 1.1rem;
+      color: #aaa;
+    }
+
+    .timer {
+      font-size: 1.5rem;
+      color: #ff5555;
+      margin: 1rem 0;
+    }
+
+    iframe {
+      width: 90%;
+      max-width: 1000px;
+      height: 70vh;
+      border-radius: 16px;
+      box-shadow: 0 0 25px rgba(255, 0, 0, 0.3);
+      border: 2px solid #ff4444;
+      opacity: 0;
+      transform: scale(0.9);
+      transition: all 0.8s ease;
+    }
+
+    iframe.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .btn {
+      display: inline-block;
+      background: #ff4444;
+      color: white;
+      padding: 0.8rem 1.4rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: #ff6666;
+    }
+
+    .quests {
+      margin: 2rem auto;
+      text-align: left;
+      max-width: 600px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 12px;
+      padding: 1rem 2rem;
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    }
+
+    .quests h2 {
+      text-align: center;
+    }
+
+    li {
+      margin: 0.6rem 0;
+      line-height: 1.4;
+    }
+
+    footer {
+      margin: 2rem 0 1rem;
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🎮 Финальное занятие: “Поймай квадрат”</h1>
+    <p class="tagline">HTML / CSS / JS мини-баттл от Bee.Jules 🚀</p>
+    <div class="timer" id="timer">Старт через 3...</div>
+  </header>
+
+  <!-- встроенный CodePen -->
+  <iframe id="gameFrame" 
+    src="https://codepen.io/Andrey-G-the-decoder/embed/azdWKZd"
+    title="Catch the Square" 
+    frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  </iframe>
+
+  <div style="margin: 2rem;">
+    <a class="btn" href="https://codepen.io/Andrey-G-the-decoder/pen/azdWKZd" target="_blank">
+      ✏️ Открыть на CodePen и изменить код
+    </a>
+  </div>
+
+  <section class="quests">
+    <h2>💡 Квест-уровни</h2>
+    <ol>
+      <li>Измени цвет и форму квадрата <br><em>подсказка: background, border-radius</em></li>
+      <li>Сделай квадрат быстрее <br><em>подсказка: setInterval()</em></li>
+      <li>Добавь эффект “взрыва” при клике <br><em>подсказка: @keyframes + animation</em></li>
+      <li>Добавь таймер (например, 30 сек) <br><em>подсказка: переменная time и setInterval()</em></li>
+      <li>Покажи “Game Over” экран <br><em>подсказка: alert() или innerHTML</em></li>
+      <li>Укрась дизайн — фон, шрифт, переходы <br><em>творчество приветствуется 🎨</em></li>
+    </ol>
+  </section>
+
+  <footer>© 2025 Bee.Jules — HTML/CSS Junior Final Lesson</footer>
+
+  <script>
+    // Таймер обратного отсчёта перед стартом
+    let count = 3;
+    const timer = document.getElementById('timer');
+    const frame = document.getElementById('gameFrame');
+
+    const interval = setInterval(() => {
+      count--;
+      if (count > 0) {
+        timer.textContent = `Старт через ${count}...`;
+      } else {
+        timer.textContent = "Начали! 🚀";
+        frame.classList.add('visible');
+        clearInterval(interval);
+        setTimeout(() => timer.style.display = 'none', 1500);
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
+
