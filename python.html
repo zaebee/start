@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Контрольная: Миссия программиста — Python & Turtle</title>
+  <style>
+    body{font-family:system-ui,Arial;margin:20px;background:#f7fbff;color:#102a43}
+    h1,h2{color:#0b3d91}
+    .container{max-width:980px;margin:0 auto}
+    section{background:#fff;border-radius:10px;padding:16px;margin-bottom:18px;box-shadow:0 2px 8px rgba(10,20,40,0.06)}
+    textarea{width:100%;height:180px;font-family:monospace;font-size:14px;padding:10px;border-radius:6px;border:1px solid #dbe4ff;box-sizing:border-box}
+    .controls{display:flex;gap:8px;margin-top:8px}
+    button{background:#0b3d91;color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer;transition:0.2s}
+    button:hover{opacity:0.9}
+    button.secondary{background:#2b7a78}
+    .output{background:#001f3f;color:#e6f6ff;padding:10px;border-radius:6px;min-height:80px;white-space:pre-wrap}
+    .small{font-size:13px;color:#445}
+    .show-hint{background:#ffcc00;color:#000;border:none;padding:6px 10px;border-radius:6px;cursor:pointer;margin-top:6px;font-size:14px}
+    .show-solution{background:#38a169;color:#fff;border:none;padding:6px 10px;border-radius:6px;cursor:pointer;margin-top:6px;font-size:14px}
+    .hint{background:#eef6ff;padding:8px;border-radius:6px;border:1px dashed #bcd4ff;margin-top:8px;display:none}
+    .solution{background:#f0fff4;padding:8px;border-radius:6px;border:1px dashed #c6f6d5;margin-top:8px;display:none;white-space:pre-wrap}
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
+</head>
+<body>
+<div class="container">
+  <h1>Контрольная работа: «Миссия программиста» 🐍</h1>
+  <p class="small">Темы: input, print, random, for, lists, turtle. Возраст: 10–13 лет. Время: 40 мин.</p>
+
+  <div id="timer" style="font-weight:700;color:#c92a2a;margin-bottom:15px;">40:00</div>
+
+  <!-- === 1 === -->
+  <section>
+    <h2>1. Приветствие игрока (5 баллов)</h2>
+    <button class="show-hint" onclick="toggleHint(this)">Показать подсказку 💡</button>
+    <button class="show-solution" onclick="toggleSolution(this)">Показать пример решения</button>
+    <div class="hint">Используй <code>input()</code> и <code>print()</code>, чтобы спросить имя игрока.</div>
+    <div class="solution"># Пример решения
+name = input('Как тебя зовут? ')
+print('Привет, ' + name + '! Добро пожаловать в игру!')</div>
+
+    <textarea id="code1"># TODO: попроси игрока ввести своё имя и поприветствуй его
+# твой код здесь
+</textarea>
+    <div class="controls">
+      <button onclick="runCode('code1','out1')">Run</button>
+      <button class="secondary" onclick="copyToTrinket('code1')">Copy for Trinket</button>
+    </div>
+    <div id="out1" class="output"></div>
+  </section>
+
+  <!-- === 2 === -->
+  <section>
+    <h2>2. Сумма двух чисел (5 баллов)</h2>
+    <button class="show-hint" onclick="toggleHint(this)">Показать подсказку 💡</button>
+    <button class="show-solution" onclick="toggleSolution(this)">Показать пример решения</button>
+    <div class="hint">Попроси два числа через <code>input()</code>, преобразуй в <code>int()</code> и выведи сумму.</div>
+    <div class="solution">a = int(input('Введите первое число: '))
+b = int(input('Введите второе число: '))
+print('Сумма =', a + b)</div>
+
+    <textarea id="code2"># TODO: спроси два числа и выведи их сумму
+# твой код здесь
+</textarea>
+    <div class="controls">
+      <button onclick="runCode('code2','out2')">Run</button>
+      <button class="secondary" onclick="copyToTrinket('code2')">Copy for Trinket</button>
+    </div>
+    <div id="out2" class="output"></div>
+  </section>
+
+  <!-- === 3 === -->
+  <section>
+    <h2>3. Угадай число (10 баллов)</h2>
+    <button class="show-hint" onclick="toggleHint(this)">Показать подсказку 💡</button>
+    <button class="show-solution" onclick="toggleSolution(this)">Показать пример решения</button>
+    <div class="hint">Используй <code>import random</code> и <code>random.randint(1,10)</code>.</div>
+    <div class="solution">import random
+number = random.randint(1,10)
+guess = int(input('Угадай число: '))
+if guess == number:
+    print('Ты угадал!')
+else:
+    print('Не угадал, это было', number)</div>
+
+    <textarea id="code3"># TODO: игра "Угадай число"
+# твой код здесь
+</textarea>
+    <div class="controls">
+      <button onclick="runCode('code3','out3')">Run</button>
+      <button class="secondary" onclick="copyToTrinket('code3')">Copy for Trinket</button>
+    </div>
+    <div id="out3" class="output"></div>
+  </section>
+
+  <!-- === и т.д. (аналогично 4–8) === -->
+     <section>
+      <div class="task-header"><h2>4. Проверка чётности (5 баллов)</h2><div class="note">(операторы)</div></div>
+      <button class="show-hint" onclick="toggleHint(this)">Показать подсказку 💡</button>
+      <button class="show-solution" onclick="toggleSolution(this)">Показать пример решения</button>
+      <div class="hint">Чётность проверяется через остаток от деления: <code>num % 2 == 0</code>.</div>
+      <div class="solution"># Пример
+num = int(input('Введите число: '))
+if num % 2 == 0:
+    print('Чётное')
+else:
+    print('Нечётное')
+</div>
+
+      <textarea id="code4"># TODO: спроси число и напечатай, чётное оно или нет
+
+# твой код здесь
+</textarea>
+      <div class="controls">
+        <button onclick="runCode('code4','output4')">Run</button>
+        <button class="secondary" onclick="copyToTrinket('code4')">Copy for Trinket</button>
+      </div>
+      <div id="output4" class="output"></div>
+    </section>
+
+    <section>
+      <div class="task-header"><h2>5. Таблица умножения (10 баллов)</h2><div class="note">(цикл for)</div></div>
+      <button class="show-hint" onclick="toggleHint(this)">Показать подсказку 💡</button>
+      <button class="show-solution" onclick="toggleSolution(this)">Показать пример решения</button>
+      <div class="hint">Используй <code>for i in range(1,11):</code>.</div>
+      <div class="solution"># Пример
+num = int(input('Введите число: '))
+for i in range(1, 11):
+    print(num, 'x', i, '=', num*i)
+</div>
+
+      <textarea id="code5"># TODO: напечатай таблицу умножения для введённого числа (1..10)
+
+# твой код здесь
+</textarea>
+      <div class="controls">
+        <button onclick="runCode('code5','output5')">Run</button>
+        <button class="secondary" onclick="copyToTrinket('code5')">Copy for Trinket</button>
+      </div>
+      <div id="output5" class="output"></div>
+    </section>
+
+    <section>
+      <div class="task-header"><h2>6. Квадрат (функция + turtle) (10 баллов)</h2><div class="note">(functions, turtle)</div></div>
+      <button class="show-hint" onclick="toggleHint(this)">Показать подсказку 💡</button>
+      <button class="show-solution" onclick="toggleSolution(this)">Показать пример решения</button>
+      <div class="hint">Создай функцию <code>square(size)</code>, которая рисует квадрат с помощью turtle.</div>
+      <div class="solution"># Пример
+import turtle
+t = turtle.Turtle()
+def square(size):
+    for i in range(4):
+        t.forward(size)
+        t.right(90)
+square(100)
+turtle.done()</div>
+
+      <textarea id="code6"># TODO: напиши функцию square(size), которая рисует квадрат
+# Если Skulpt не рисует turtle, используй Copy for Trinket
+
+# твой код здесь
+</textarea>
+      <div class="controls">
+        <button onclick="runCode('code6','output6')">Run</button>
+        <button class="secondary" onclick="copyToTrinket('code6')">Copy for Trinket</button>
+      </div>
+      <div id="output6" class="output"></div>
+    </section>
+
+    <section>
+      <div class="task-header"><h2>7. Список животных (10 баллов)</h2><div class="note">(lists, for)</div></div>
+      <button class="show-hint" onclick="toggleHint(this)">Показать подсказку 💡</button>
+      <button class="show-solution" onclick="toggleSolution(this)">Показать пример решения</button>
+      <div class="hint">Создай список строк и выведи каждое имя через цикл.</div>
+      <div class="solution"># Пример
+animals = ['кот', 'собака', 'слон']
+for a in animals:
+    print('Я люблю', a)</div>
+
+      <textarea id="code7"># TODO: создай список животных и выведи их
+
+# твой код здесь
+</textarea>
+      <div class="controls">
+        <button onclick="runCode('code7','output7')">Run</button>
+        <button class="secondary" onclick="copyToTrinket('code7')">Copy for Trinket</button>
+      </div>
+      <div id="output7" class="output"></div>
+    </section>
+
+    <section>
+      <div class="task-header"><h2>8. Новогодняя открытка (суперзадание) (20 баллов)</h2><div class="note">(turtle, random, functions, creativity)</div></div>
+      <button class="show-hint" onclick="toggleHint(this)">Показать подсказку 💡</button>
+      <button class="show-solution" onclick="toggleSolution(this)">Показать пример решения</button>
+      <div class="hint">Нарисуй хотя бы 3 снежинки в случайных местах и подпись. Лучше скопировать в Trinket для корректной работы turtle.</div>
+      <div class="solution"># Пример (сокращённый)
+import turtle, random
+t = turtle.Turtle()
+colors = ['blue','cyan','purple']
+def snowflake(size, count):
+    for i in range(count):
+        t.forward(size)
+        t.backward(size)
+        t.right(360/count)
+for i in range(3):
+    t.penup(); t.goto(random.randint(-150,150), random.randint(-150,150)); t.pendown();
+    t.color(random.choice(colors))
+    snowflake(40, 8)
+t.penup(); t.goto(-120, -200); t.write('С Новым годом!', font=('Arial', 16, 'bold'))
+turtle.done()</div>
+
+      <textarea id="code8"># TODO: создай новогоднюю открытку с несколькими снежинками
+# Совет: для turtle лучше вставить код в Trinket через Copy for Trinket
+
+# твой код здесь
+</textarea>
+      <div class="controls">
+        <button onclick="runCode('code8','output8')">Run</button>
+        <button class="secondary" onclick="copyToTrinket('code8')">Copy for Trinket</button>
+      </div>
+      <div id="output8" class="output"></div>
+    </section>
+
+    <section>
+      <h2>Инструкции для учителя</h2>
+      <ul>
+        <li>Ученики работают 40 минут. Подсказки и примеры открываются по желанию.</li>
+        <li>Если Skulpt не поддерживает turtle в вашем окружении, ученики используют кнопку "Copy for Trinket" и запускают в реальном Python-runnerе.</li>
+        <li>Оценивание: суммарно до 75 баллов. +5 бонусов за креатив. Разбейте баллы по частям по усмотрению.</li>
+      </ul>
+    </section>
+</div>
+
+<script>
+// ---------- Показ подсказок ----------
+function toggleHint(btn){
+  const section = btn.closest("section");
+  const hint = section.querySelector(".hint");
+  if(hint) hint.style.display = hint.style.display === "block" ? "none" : "block";
+}
+function toggleSolution(btn){
+  const section = btn.closest("section");
+  const sol = section.querySelector(".solution");
+  if(sol) sol.style.display = sol.style.display === "block" ? "none" : "block";
+}
+
+// ---------- Таймер ----------
+let t = 40*60;
+setInterval(()=>{
+  if(t<=0)return;
+  t--;
+  let m=Math.floor(t/60), s=t%60;
+  document.getElementById("timer").textContent=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+},1000);
+
+// ---------- Skulpt ----------
+function builtinRead(x){
+  if(Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined){
+    throw "File not found: '"+x+"'";
+  }
+  return Sk.builtinFiles["files"][x];
+}
+
+function runCode(id, outId){
+  const code=document.getElementById(id).value;
+  const out=document.getElementById(outId);
+  out.textContent='';
+  Sk.configure({
+    output: t=>out.textContent+=t,
+    read: builtinRead,
+    inputfun: prompt => new Promise(r=>setTimeout(()=>{
+      const val=window.prompt(prompt||'');
+      r(val===null?'':val);
+    },0)),
+    inputfunTakesPrompt:true
+  });
+  Sk.misceval.asyncToPromise(()=>Sk.importMainWithBody("<stdin>",false,code,true))
+   .catch(err=>out.textContent+="\n"+err.toString());
+}
+
+function copyToTrinket(id){
+  const code=document.getElementById(id).value;
+  navigator.clipboard.writeText(code).then(()=>alert("Код скопирован! Вставь в Trinket и запусти."));
+}
+</script>
+</body>
+</html>
