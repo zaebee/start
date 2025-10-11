@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>6 простых шаблонов для Tinkercad — мини-победы</title>
+  <style>
+    :root{--bg:#f7f9fc;--card:#fff;--accent:#2b8cff;--muted:#6b7280}
+    body{font-family:Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:var(--bg); margin:0; color:#0f172a}
+    .wrap{max-width:950px;margin:28px auto;padding:20px}
+    header{display:flex;align-items:center;gap:16px}
+    h1{margin:0;font-size:20px}
+    p.lead{margin:6px 0 18px;color:var(--muted)}
+    .controls{margin-left:auto;display:flex;gap:8px}
+    button{background:var(--accent);color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer}
+    button.ghost{background:transparent;color:var(--accent);border:1px solid rgba(43,140,255,.15)}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+    .card{background:var(--card);padding:14px;border-radius:12px;box-shadow:0 4px 14px rgba(15,23,42,.06)}
+    .card h3{margin:0 0 6px;font-size:16px}
+    .meta{display:flex;gap:8px;align-items:center;font-size:13px;color:var(--muted)}
+    .badge{background:rgba(15,23,42,.04);padding:4px 8px;border-radius:999px;font-weight:600}
+    ul.steps{padding-left:18px;margin:8px 0 0}
+    ul.steps li{margin:6px 0}
+    .tips{margin-top:10px;font-size:13px;color:var(--muted)}
+    footer{margin-top:22px;padding-top:14px;border-top:1px dashed rgba(15,23,42,.06);font-size:13px;color:var(--muted)}
+    @media print{body{background:#fff} .controls, footer{display:none}.grid{grid-template-columns:1fr}}
+    .download{display:inline-block;margin-left:8px}
+    .teacher{background:linear-gradient(90deg,rgba(43,140,255,.06),transparent);padding:10px;border-radius:8px;margin-top:10px}
+    .small{font-size:13px;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>6 простых шаблонов для Tinkercad — "Мини-победы"</h1>
+        <p class="lead">Лёгкие пошаговые шаблоны для новичков (9–12 лет). Каждый шаблон — заметный результат за 10–20 минут.</p>
+      </div>
+      <div class="controls">
+        <button id="printBtn">Печать</button>
+        <button id="downloadBtn" class="ghost">Скачать HTML</button>
+      </div>
+    </header>
+
+    <section class="teacher card">
+      <strong>Короткая памятка для учителя:</strong>
+      <div class="small">Подготовь 6 ссылок-шаблонов в Tinkercad (или открой проект на ПК класса). На занятии давай выбор: лениво/средне/круто. Каждые 15–20 минут делай чек-поинт, показывай 2–3 работы на проекторе.</div>
+    </section>
+
+    <div class="grid">
+      <!-- 1 -->
+      <article class="card">
+        <h3>1. Мини‑домик «Коробка с окнами»</h3>
+        <div class="meta"><span class="badge">Навык: группировка</span><span class="small">Время: 15–20 мин</span></div>
+        <ol class="steps">
+          <li>Добавь <strong>Box</strong> — растяни до ~40×40×30 мм.</li>
+          <li>Добавь <strong>Box Hole</strong>, помести внутрь и сгруппируй (вырезается внутренность).</li>
+          <li>Создай 1–2 окна с <strong>Box Hole</strong> и крышу (пирамидой или другим box).</li>
+          <li>Раскрась и подпиши: <em>«Мой дом»</em>.</li>
+        </ol>
+        <div class="tips">Лениво: цвет + крыша. Круто: добавить дверь, балкон или табличку.</div>
+      </article>
+
+      <!-- 2 -->
+      <article class="card">
+        <h3>2. Космическая капсула</h3>
+        <div class="meta"><span class="badge">Навык: выравнивание</span><span class="small">Время: 10–15 мин</span></div>
+        <ol class="steps">
+          <li>Добавь <strong>Cylinder</strong> — корпус.</li>
+          <li>Поверх — <strong>Half Sphere</strong> (капюшон) и <strong>Cone</strong> под корпусом.</li>
+          <li>Добавь 2–3 трубки/двигателя (Tube/Cylinder), сгруппируй.</li>
+          <li>Раскрась, поставь окно (Box Hole) — готово.</li>
+        </ol>
+        <div class="tips">Лениво: корпус + конус. Круто: антенны, окна и логотип.</div>
+      </article>
+
+      <!-- 3 -->
+      <article class="card">
+        <h3>3. Пироженка / Кекс</h3>
+        <div class="meta"><span class="badge">Навык: композиция</span><span class="small">Время: 10–15 мин</span></div>
+        <ol class="steps">
+          <li>Добавь <strong>Cone</strong> — основа.</li>
+          <li>Сверху — <strong>Half Sphere</strong> (крем).</li>
+          <li>На верх — <strong>Sphere</strong> (вишенка).</li>
+          <li>Раскрась: коричневое/розовое/красное.</li>
+        </ol>
+        <div class="tips">Лениво: конус + крем. Круто: посыпка (много маленьких цилиндров).</div>
+      </article>
+
+      <!-- 4 -->
+      <article class="card">
+        <h3>4. Башня‑замок</h3>
+        <div class="meta"><span class="badge">Навык: повторение</span><span class="small">Время: 20 мин</span></div>
+        <ol class="steps">
+          <li>Добавь <strong>Cylinder</strong> — основа.</li>
+          <li>Сверху — уменьшенный <strong>Box</strong> или ещё один cylinder для уровня.</li>
+          <li>Создай 1 «зубец» (маленький Box), дублируй вокруг (Ctrl+D) и выровняй.</li>
+          <li>Добавь дверь (Box Hole) и флаг.</li>
+        </ol>
+        <div class="tips">Лениво: цилиндр + один зубец. Круто: вторая башня и мост.</div>
+      </article>
+
+      <!-- 5 -->
+      <article class="card">
+        <h3>5. Мини‑робот «Кубик»</h3>
+        <div class="meta"><span class="badge">Навык: дублирование</span><span class="small">Время: 15–25 мин</span></div>
+        <ol class="steps">
+          <li>Добавь <strong>Box</strong> — тело.</li>
+          <li>Добавь 2 <strong>Sphere</strong> — глаза; 2 <strong>Cylinder</strong> — руки; 2 <strong>Box</strong> — ноги.</li>
+          <li>Выровняй, сгруппируй, добавь панель (тонкий box) на груди.</li>
+          <li>Раскрась и подпиши имя робота.</li>
+        </ol>
+        <div class="tips">Лениво: куб + глаза. Круто: антенна и экран с текстом.</div>
+      </article>
+
+      <!-- 6 -->
+      <article class="card">
+        <h3>6. Машинка из трёх деталей</h3>
+        <div class="meta"><span class="badge">Навык: выравнивание</span><span class="small">Время: 10–15 мин</span></div>
+        <ol class="steps">
+          <li>Добавь <strong>Box</strong> — корпус.</li>
+          <li>Сверху — <strong>Paraboloid</strong> или уменьшенный Box — кабина.</li>
+          <li>Добавь 4 колеса: <strong>Torus</strong> или <strong>Cylinder</strong>, дублируй и выровняй.</li>
+          <li>Раскрась корпус и колёса.</li>
+        </ol>
+        <div class="tips">Лениво: корпус + 2 колеса. Круто: фары и спойлер.</div>
+      </article>
+
+    </div>
+
+    <section class="card" style="margin-top:14px">
+      <h3>Быстрая инструкция: экспорт в CoSpaces (.glb)</h3>
+      <ol class="steps">
+        <li>В Tinkercad: нажать <em>Export</em> → выбрать <strong>.glb</strong>.</li>
+        <li>Сохранить файл на ПК (Downloads).</li>
+        <li>В CoSpaces: Import → загрузить .glb → разместить в сцене.</li>
+        <li>Добавить простую анимацию или точку взаимодействия в CoSpaces (по желанию).</li>
+      </ol>
+      <div class="small">Примечание: бесплатная версия CoSpaces может ограничивать размер сцены — совет: загружать только один объект (робота/дом) вместо целой сцены.</div>
+    </section>
+
+    <section class="card" style="margin-top:14px">
+      <h3>Шпаргалка 6 кнопок (для детей)</h3>
+      <ol class="steps">
+        <li><strong>Добавить</strong> — вставить фигуру (Box, Sphere и т. д.).</li>
+        <li><strong>Переместить</strong> — курсор/стрелки — ставим объект.</li>
+        <li><strong>Масштаб</strong> — изменить размер по осям.</li>
+        <li><strong>Повернуть</strong> — накрест наши повороты.</li>
+        <li><strong>Group</strong> — объединить части в один объект.</li>
+        <li><strong>Hole</strong> — вырезать части (окна, двери).</li>
+      </ol>
+    </section>
+
+    <footer>
+      Подсказка: давай выбор — <em>лениво / средне / круто</em> — и ученики почти всегда выберут начать. Если хочешь, могу встраивать эти шаблоны в готовые ссылки для Classroom Tinkercad.
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('printBtn').addEventListener('click',function(){window.print()});
+    document.getElementById('downloadBtn').addEventListener('click',function(){
+      const blob = new Blob([document.documentElement.outerHTML],{type:'text/html'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'tinkercad_templates_minivictories.html';
+      document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    });
+  </script>
+</body>
+</html>
+
