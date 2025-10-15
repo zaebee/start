@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Урок: Циклы — визуально и через Turtle (10–13 лет)</title>
+  <style>
+    :root{--bg:#f7fbff;--card:#fff;--accent:#0b3d91;--muted:#556}
+    body{font-family:system-ui, -apple-system, Roboto, 'Segoe UI', Arial; background:var(--bg); color:#102a43;margin:18px}
+    .wrap{max-width:1100px;margin:0 auto}
+    header{display:flex;align-items:center;gap:16px}
+    h1{color:var(--accent);margin:6px 0}
+    .card{background:var(--card);border-radius:10px;padding:14px;margin:14px 0;box-shadow:0 6px 18px rgba(10,20,40,0.06)}
+    .row{display:flex;gap:12px}
+    .col{flex:1}
+    pre{background:#062a4a;color:#dff3ff;padding:10px;border-radius:8px;overflow:auto}
+    textarea{width:100%;height:160px;font-family:monospace;font-size:13px;padding:8px;border-radius:8px;border:1px solid #ddebf8;box-sizing:border-box}
+    button{background:var(--accent);color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer}
+    .muted{color:var(--muted);font-size:14px}
+    .center{text-align:center}
+    .visual{height:140px;display:flex;align-items:center;justify-content:center}
+    /* simple CSS animation to illustrate repetition */
+    .steps{display:flex;gap:10px;align-items:center}
+    .step{width:40px;height:40px;border-radius:6px;background:#bee3f8;display:flex;align-items:center;justify-content:center;font-weight:700;color:#034;animation:blink 1.2s infinite}
+    .step:nth-child(2){animation-delay:0.15s}
+    .step:nth-child(3){animation-delay:0.3s}
+    .step:nth-child(4){animation-delay:0.45s}
+    @keyframes blink{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
+    .hint{background:#eef6ff;padding:8px;border-radius:6px;border:1px dashed #cfe6ff;margin-top:8px}
+    .task{background:#fbfbff;border-left:4px solid #cfe6ff;padding:10px;border-radius:6px}
+    .small{font-size:13px;color:var(--muted)}
+    .controls{display:flex;gap:8px;margin-top:8px}
+    .output{background:#001f3f;color:#e6f6ff;padding:10px;border-radius:6px;min-height:70px;white-space:pre-wrap}
+    .footer{font-size:13px;color:var(--muted);margin-top:8px}
+  </style>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      padding: 20px;
+    }
+    h1 {
+      color: #333;
+    }
+    .mermaid {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 8px;
+	  text-align: center;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>Урок: Циклы — визуально и через Turtle</h1>
+        <div class="small">Для 10–13 лет · формат: 2 занятия по 40 минут · интерактивные примеры и задания</div>
+      </div>
+    </header>
+  
+    <section class="card">
+      <h2>Коротко — что такое цикл?</h2>
+      <div class="row">
+        <div class="col">
+          <p>Цикл — это способ сказать компьютеру: <strong>«Сделай это действие несколько раз»</strong>. Вместо того, чтобы копировать одну и ту же команду, мы пишем её один раз и говорим, сколько раз её повторить.</p>
+          <div class="hint">Пример из жизни: чистить зубы 2 раза в день — повторяем одно и то же действие.</div>
+        </div>
+        <div class="col visual">
+          <div>
+            <div class="center"><strong>Покажи 4 шага</strong></div>
+            <div class="steps" style="margin-top:10px">
+              <div class="step">1</div>
+              <div class="step">2</div>
+              <div class="step">3</div>
+              <div class="step">4</div>
+            </div>
+            <div class="small center" style="margin-top:8px">Каждый блок — одно и то же действие</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+	<section class="card">
+		<div class="mermaid">
+		graph TD
+		  A[☀️ Начало ☀️] --> B{🔁 Повторить 5 раз 🔁};
+		  B -- 1 --> C[🤸 Действие 🤸];
+		  C --> D[🔢 Счетчик: 1 🔢];
+		  D --> B;
+		  B -- 2 --> C;
+		  C --> D;
+		  D --> B;
+		  B -- 3 --> C;
+		  C --> D;
+		  D --> B;
+		  B -- 4 --> C;
+		  C --> D;
+		  D --> B;
+		  B -- 5 --> E[⭐ Конец цикла ⭐];
+		  E --> F[😊 Конец 😊];
+		</div>
+	</section>
+    <!-- PART A -->
+    <section class="card">
+      <h2>Часть A (40 минут) — понять циклы</h2>
+      <ol>
+        <li class="task">
+          <strong>Задание 1 — Звёздочки</strong> (5 мин)
+          <p class="small">Выведи в консоль 10 звёздочек: <code>**********</code></p>
+          <textarea id="codeA1"># TODO: вывеси 10 звёздочек в одну строку
+# Подсказка: можно использовать цикл for и print без переноса
+</textarea>
+          <div class="controls"><button onclick="runCode('codeA1','outA1')">Run</button></div>
+          <div id="outA1" class="output"></div>
+        </li>
+
+        <li class="task" style="margin-top:12px">
+          <strong>Задание 2 — Считаем вместе</strong> (7 мин)
+          <p class="small">Попроси число n и выведи числа от 1 до n через цикл.</p>
+          <textarea id="codeA2"># TODO: спроси число n и напечатай числа 1..n, каждое на новой строке
+# Пример: n = 5 -> вывод 1 2 3 4 5
+</textarea>
+          <div class="controls"><button onclick="runCode('codeA2','outA2')">Run</button></div>
+          <div id="outA2" class="output"></div>
+        </li>
+
+        <li class="task" style="margin-top:12px">
+          <strong>Задание 3 — Лестница (turtle)</strong> (12–15 мин)
+          <p class="small">Нарисуй лестницу из 6 ступеней: каждая ступень — горизонтальная линия и подъем. Используй цикл.</p>
+          <textarea id="codeA3"># TODO: нарисуй лестницу из 6 ступеней с помощью turtle
+# Подсказка: в цикле двигайся вперед и поднимайся (right/left)
+import turtle
+t = turtle.Turtle()
+
+t.speed(0)
+
+# твой код здесь
+
+turtle.done()</textarea>
+          <div class="controls"><button onclick="runCode('codeA3','outA3')">Run</button> <button class="secondary" onclick="copyToTrinket('codeA3')">Copy for Trinket</button></div>
+          <div id="outA3" class="output"></div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- PART B -->
+    <section class="card">
+      <h2>Часть B (40 минут) — циклы + творчество</h2>
+      <ol>
+        <li class="task">
+          <strong>Задание 4 — Многоугольник (turtle)</strong> (10 мин)
+          <p class="small">Сделай программу, которая спрашивает число сторон <code>n</code> и рисует n-угольник. Для n = 5 получится правильный пятиугольник.</p>
+          <textarea id="codeB1"># TODO: спроси n и нарисуй n-угольник
+import turtle
+
+t = turtle.Turtle()
+
+t.speed(0)
+
+# твой код здесь
+
+turtle.done()</textarea>
+          <div class="controls"><button onclick="runCode('codeB1','outB1')">Run</button> <button class="secondary" onclick="copyToTrinket('codeB1')">Copy for Trinket</button></div>
+          <div id="outB1" class="output"></div>
+        </li>
+
+        <li class="task" style="margin-top:12px">
+          <strong>Задание 5 — Узоры: повторяющийся поворот</strong> (10–12 мин)
+          <p class="small">Используя turtle и цикл на 36 повторов, рисуем линию и поворачиваем на 170 градусов — что получится?</p>
+          <textarea id="codeB2"># TODO: нарисуй узор с 36 итерациями
+import turtle
+t = turtle.Turtle()
+
+t.speed(0)
+
+# твой код здесь
+
+turtle.done()</textarea>
+          <div class="controls"><button onclick="runCode('codeB2','outB2')">Run</button> <button class="secondary" onclick="copyToTrinket('codeB2')">Copy for Trinket</button></div>
+          <div id="outB2" class="output"></div>
+        </li>
+
+        <li class="task" style="margin-top:12px">
+          <strong>Задание 6 — Генератор снежинок</strong> (15–20 мин)
+          <p class="small">Напиши функцию <code>snowflake(size, count)</code>, которая рисует лучи (как мы делали). Нарисуй 3–5 снежинок в случайных местах.</p>
+          <textarea id="codeB3"># TODO: реализуй snowflake(size, count) и нарисуй несколько снежинок
+import turtle, random
+
+t = turtle.Turtle()
+t.speed(0)
+
+# твой код здесь
+
+turtle.done()</textarea>
+          <div class="controls"><button onclick="runCode('codeB3','outB3')">Run</button> <button class="secondary" onclick="copyToTrinket('codeB3')">Copy for Trinket</button></div>
+          <div id="outB3" class="output"></div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="card">
+      <h2>Итог — что мы узнали?</h2>
+      <ul>
+        <li>Цикл повторяет действие — это экономит код.</li>
+        <li>Параметры цикла (количество повторов) управляют результатом.</li>
+        <li>Turtle хорошо показывает, что повторения создают узоры.</li>
+      </ul>
+      <div class="task">
+        <strong>Короткая самопроверка (напиши в тетради)</strong>
+        <ol class="small">
+          <li>Что делает <code>for i in range(5):</code>?</li>
+          <li>Как с помощью цикла нарисовать квадрат?</li>
+          <li>Что будет, если поменять угол поворота с 90 на 60 в квадрате?</li>
+        </ol>
+      </div>
+      <div class="footer">Учитель: давай после части A быстрый опрос — попроси 3–4 ученика объяснить своими словами, что делает цикл.</div>
+    </section>
+
+    <footer class="small">Подсказки в полях -- по желанию. Кнопка Copy for Trinket переносит код в реальный Python-runner, где turtle работает точнее, чем в Skulpt.</footer>
+  </div>
+
+<script>
+// Skulpt helpers (input uses Promise)
+function builtinRead(x){ if(Sk.builtinFiles===undefined||Sk.builtinFiles['files'][x]===undefined) throw "File not found: '"+x+"'"; return Sk.builtinFiles['files'][x]; }
+function runCode(id,outId){ const code=document.getElementById(id).value; const out=document.getElementById(outId); out.textContent=''; Sk.configure({output:txt=>out.textContent+=txt,read:builtinRead,inputfun:prompt=>new Promise(r=>setTimeout(()=>{const v=window.prompt(prompt||''); r(v===null?'':v);},0)), inputfunTakesPrompt:true}); Sk.misceval.asyncToPromise(()=>Sk.importMainWithBody('<stdin>',false,code,true)).catch(err=>out.textContent+='\n'+err.toString()); }
+function copyToTrinket(id){ const code=document.getElementById(id).value; navigator.clipboard.writeText(code).then(()=>alert('Код скопирован. Вставьте в Trinket.')).catch(()=>alert('Не удалось скопировать.')) }
+
+// Simple helpers for hint/solution not shown here: teacher can add
+</script>
+</body>
+</html>

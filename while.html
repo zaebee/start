@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Урок: while — геймификация (10–13 лет)</title>
+  <style>
+    :root{--bg:#f7fbff;--card:#fff;--accent:#0b3d91;--accent2:#2b7a78;--muted:#556}
+    body{font-family:system-ui, -apple-system, Roboto, 'Segoe UI', Arial;background:var(--bg);color:#102a43;margin:16px}
+    .wrap{max-width:1100px;margin:0 auto}
+    header{display:flex;align-items:center;gap:12px}
+    h1{color:var(--accent);margin:6px 0}
+    .card{background:var(--card);border-radius:10px;padding:14px;margin:12px 0;box-shadow:0 6px 18px rgba(10,20,40,0.06)}
+    .small{font-size:13px;color:var(--muted)}
+    textarea{width:100%;height:160px;font-family:monospace;font-size:13px;padding:10px;border-radius:8px;border:1px solid #ddebf8;box-sizing:border-box}
+    .controls{display:flex;gap:8px;margin-top:8px}
+    button{background:var(--accent);color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer}
+    button.secondary{background:var(--accent2)}
+    .hint{background:#eef6ff;padding:8px;border-radius:6px;border:1px dashed #cfe6ff;margin-top:8px;display:none}
+    .solution{background:#f0fff4;padding:8px;border-radius:6px;border:1px dashed #c6f6d5;margin-top:8px;display:none;white-space:pre-wrap}
+    .output{background:#001f3f;color:#e6f6ff;padding:10px;border-radius:6px;min-height:70px;white-space:pre-wrap}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .note{font-size:13px;color:var(--muted)}
+    .legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+    .badge{background:#cfe6ff;padding:6px 10px;border-radius:8px;color:var(--accent);font-weight:700}
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>Урок: Цикл <code>while</code> — геймификация</h1>
+        <div class="small">Для 10–13 лет · формат: 40+40 минут · примеры, игры и задания на <code>while</code>.</div>
+      </div>
+      <div style="margin-left:auto" class="legend"><div class="badge">Практика</div><div class="badge">Turtle</div><div class="badge">Игрово</div></div>
+    </header>
+
+    <section class="card">
+      <h2>Коротко: что такое <code>while</code>?</h2>
+      <p>Цикл <code>while</code> говорит компьютеру: «Пока условие истинно — повторяй действие». В отличие от <code>for</code>, мы часто не знаем заранее, сколько раз придётся повторять — мы ждём, пока что-то произойдёт.</p>
+      <div class="note">Пример из жизни: «Пока кружка не пуста — пей сок».</div>
+    </section>
+
+    <section class="card">
+      <h2>Демонстрации — быстро</h2>
+      <div class="grid">
+        <div>
+          <h3>1. Счетчик</h3>
+          <pre class="solution" id="demo1">i = 1
+while i <= 5:
+    print(i)
+    i = i + 1
+</pre>
+          <div class="note">Выведет 1 2 3 4 5. Обрати внимание на изменение переменной <code>i</code>.</div>
+        </div>
+        <div>
+          <h3>2. Пей сок</h3>
+          <pre class="solution" id="demo2">juice = 3
+while juice > 0:
+    print('Пью сок')
+    juice = juice - 1
+print('Пусто')</pre>
+          <div class="note">Покажи детям: переменная уменьшается — условие перестанет быть истинным.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Игра 1: «Пока не финиш» (turtle)</h2>
+      <p class="small">Черепашка идёт вперед, пока не дойдет до линии финиша (x >= 200). Пусть дети изменяют шаг и наблюдают.</p>
+      <textarea id="code1"># Игра: Пока не финиш
+import turtle
+
+t = turtle.Turtle()
+ t.speed(0)
+# начальная позиция
+start_x = t.xcor()
+# пока черепашка не дошла до x=200
+while t.xcor() < 200:
+    t.forward(20)
+
+t.write('Финиш!')
+# turtle.done()  # в Trinket раскомментируйте, если нужно
+</textarea>
+      <div class="controls"><button onclick="runCode('code1','out1')">Run</button><button class="secondary" onclick="copyToTrinket('code1')">Copy for Trinket</button></div>
+      <div id="out1" class="output"></div>
+      <div class="hint">Подсказка: можно менять шаг <code>t.forward(20)</code> или условие <code>200</code>.</div>
+    </section>
+
+    <section class="card">
+      <h2>Игра 2: «Пока не получишь сокровище»</h2>
+      <p class="small">Черепашка двигается случайно. Игра продолжается, пока не найдет сокровище (координаты в зоне).</p>
+      <textarea id="code2"># Игра: Пока не найдёшь сокровище
+import turtle, random
+
+t = turtle.Turtle()
+t.speed(0)
+found = False
+while not found:
+    dx = random.randint(-50, 50)
+    dy = random.randint(-50, 50)
+    t.penup()
+    t.goto(dx, dy)
+    t.pendown()
+    # условие: сокровище в квадранте x>30 и y>30
+    if t.xcor() > 30 and t.ycor() > 30:
+        found = True
+        t.write('Нашёл!')
+</textarea>
+      <div class="controls"><button onclick="runCode('code2','out2')">Run</button><button class="secondary" onclick="copyToTrinket('code2')">Copy for Trinket</button></div>
+      <div id="out2" class="output"></div>
+      <div class="hint">Подсказка: условие проверяется каждый цикл — используйте <code>found = True</code>, чтобы выйти из цикла.</div>
+    </section>
+
+    <section class="card">
+      <h2>Игра 3: «Пока не выполнил миссию» — текстовая</h2>
+      <p class="small">Награда дается после правильной последовательности ответов; цикл повторяет попытки.</p>
+      <textarea id="code3"># Текстовая игра: угадай слово
+secret = 'python'
+while True:
+    guess = input('Введи пароль: ')
+    if guess == secret:
+        print('Верно!')
+        break
+    else:
+        print('Неправильно. Попробуй ещё.')
+</textarea>
+      <div class="controls"><button onclick="runCode('code3','out3')">Run</button><button class="secondary" onclick="copyToTrinket('code3')">Copy for Trinket</button></div>
+      <div id="out3" class="output"></div>
+      <div class="hint">Подсказка: цикл прекращается с помощью <code>break</code> или при изменении условия.</div>
+    </section>
+
+    <section class="card">
+      <h2>Задания для учеников (уровни)</h2>
+      <ol>
+        <li class="note"><strong>Легкий:</strong> Выведи числа от 1 до 10, используя <code>while</code>.</li>
+        <li class="note"><strong>Средний:</strong> Напиши программу-счётчик шагов: пока шаги < 100 — добавляй 5 шагов.</li>
+        <li class="note"><strong>Сложный:</strong> Сделай игру «Пока не найду 3 сокровища» — счётчик найденных сокровищ.</li>
+      </ol>
+    </section>
+
+    <section class="card">
+      <h2>Пояснения для учителя — частые ошибки</h2>
+      <ul>
+        <li><strong>Бесконечный цикл</strong> — проверяйте, изменяется ли переменная в теле цикла. Например, забыли <code>i += 1</code>.</li>
+        <li><strong>Неправильные условия</strong> — условие может сразу быть <code>False</code>, и цикл не выполнится ни разу.</li>
+        <li><strong>Break vs условие</strong> — показывайте разные способы выйти из цикла: изменить условие или использовать <code>break</code>.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Итог и идеи для продолжения</h2>
+      <p class="note">После урока предложи домашнее: «сделай черепашку, которая собирает случайные монеты: пока монет меньше 5 — ходи и собирай».</p>
+    </section>
+
+    <footer class="small">Подсказка: для стабильной работы turtle в браузере используйте Copy for Trinket и запускайте в реальном Python-runnerе.</footer>
+  </div>
+
+<script>
+// Skulpt helpers (input via Promise)
+function builtinRead(x){ if(Sk.builtinFiles===undefined||Sk.builtinFiles['files'][x]===undefined) throw "File not found: '"+x+"'"; return Sk.builtinFiles['files'][x]; }
+function runCode(id,outId){ const prog=document.getElementById(id).value; const out=document.getElementById(outId); out.textContent=''; Sk.configure({ output:txt=>out.textContent+=txt, read:builtinRead, inputfun:prompt=>new Promise(r=>setTimeout(()=>{ const v=window.prompt(prompt||''); r(v===null?'':v); },0)), inputfunTakesPrompt:true }); Sk.misceval.asyncToPromise(()=>Sk.importMainWithBody('<stdin>',false,prog,true)).catch(err=>out.textContent+'\n'+err.toString()); }
+function copyToTrinket(id){ const code=document.getElementById(id).value; navigator.clipboard.writeText(code).then(()=>alert('Код скопирован. Вставьте в Trinket.')).catch(()=>alert('Не удалось скопировать.')); }
+</script>
+</body>
+</html>
