@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Урок-игры: Поймай яблоко & Гонка черепашек — Trinket-ready</title>
+  <style>
+    :root{--bg:#f7fbff;--card:#fff;--accent:#0b3d91;--accent2:#2b7a78;--muted:#556}
+    body{font-family:system-ui, -apple-system, Roboto, 'Segoe UI', Arial;background:var(--bg);color:#102a43;margin:18px}
+    .wrap{max-width:1100px;margin:0 auto}
+    header{display:flex;align-items:center;gap:12px}
+    h1{color:var(--accent);margin:6px 0}
+    .card{background:var(--card);border-radius:10px;padding:14px;margin:12px 0;box-shadow:0 6px 18px rgba(10,20,40,0.06)}
+    .small{font-size:13px;color:var(--muted)}
+    textarea{width:100%;height:220px;font-family:monospace;font-size:13px;padding:10px;border-radius:8px;border:1px solid #ddebf8;box-sizing:border-box}
+    .controls{display:flex;gap:8px;margin-top:8px}
+    button{background:var(--accent);color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer}
+    button.secondary{background:var(--accent2)}
+    .output{background:#001f3f;color:#e6f6ff;padding:10px;border-radius:6px;min-height:70px;white-space:pre-wrap}
+    .hint{background:#eef6ff;padding:8px;border-radius:6px;border:1px dashed #cfe6ff;margin-top:8px}
+    .row{display:flex;gap:12px}
+    .col{flex:1}
+    .badge{background:var(--accent);color:#fff;padding:6px 10px;border-radius:8px;font-weight:700}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>Урок-игры: "Поймай яблоко" и "Гонка черепашек"</h1>
+        <div class="small">Готовые шаблоны для Trinket — скопируйте код и вставьте в Python (Trinket) для запуска графики turtle.</div>
+      </div>
+      <div style="margin-left:auto"><span class="badge">Trinket-ready</span></div>
+    </header>
+
+    <section class="card">
+      <h2>Короткое объяснение: почему while?</h2>
+      <p>В обеих играх используется цикл <code>while</code>, потому что игра продолжается <em>пока</em> не случится какое-то событие (яблоко поймано, черепашка пересекла финиш). Мы не всегда заранее знаем, сколько шагов потребуется — поэтому <code>while</code> идеально подходит.</p>
+    </section>
+
+    <!-- Game 1 -->
+    <section class="card">
+      <h2>Игра 1 — «Поймай яблоко» (игрок управляет черепашкой)</h2>
+      <p class="small">Копируйте код в Trinket → Python и запустите. Управление: стрелки влево/вправо. Цель — поймать как можно больше яблок.</p>
+
+      <textarea id="game1">import turtle, random
+
+screen = turtle.Screen()
+screen.setup(500, 500)
+screen.title('Поймай яблоко')
+screen.tracer(0)
+
+player = turtle.Turtle()
+player.shape('triangle')
+player.color('blue')
+player.penup()
+player.goto(0, -200)
+player.setheading(90)
+
+apple = turtle.Turtle()
+apple.shape('circle')
+apple.color('red')
+apple.penup()
+apple.goto(random.randint(-220,220), 200)
+
+score = 0
+fall_speed = 4
+
+
+def move_left():
+    x = player.xcor() - 30
+    if x < -230: x = -230
+    player.setx(x)
+
+
+def move_right():
+    x = player.xcor() + 30
+    if x > 230: x = 230
+    player.setx(x)
+
+screen.listen()
+screen.onkey(move_left, 'Left')
+screen.onkey(move_right, 'Right')
+
+# Игровой цикл
+running = True
+while running:
+    y = apple.ycor() - fall_speed
+    apple.sety(y)
+
+    # Если поймал
+    if abs(player.xcor() - apple.xcor()) < 30 and abs(player.ycor() - apple.ycor()) < 30:
+        score += 1
+        print('Очки:', score)
+        apple.goto(random.randint(-220,220), 200)
+
+    # Если упало
+    if apple.ycor() < -240:
+        apple.goto(random.randint(-220,220), 200)
+
+    # Обновляем экран
+    screen.update()
+
+screen.mainloop()</textarea>
+
+      <div class="controls">
+        <button onclick="copyToTrinket('game1')">Copy for Trinket</button>
+        <button onclick="showNote('out1')">Пояснение (как работает while)</button>
+      </div>
+      <div id="out1" class="output" style="display:none">В этой игре цикл <code>while running:</code> повторяется постоянно, обновляя положение яблока. Условие выхода можно добавить (например, играть 60 секунд или при достижении очков), пока мы используем бесконечный цикл, который обновляет мир игры.</div>
+    </section>
+
+    <!-- Game 2 -->
+    <section class="card">
+      <h2>Игра 2 — «Гонка черепашек» (AI vs AI или игрок) </h2>
+      <p class="small">Копируйте код в Trinket → Python и запустите. Это простая гонка двух черепашек — можно усложнить добавлением управления игрока.</p>
+
+      <textarea id="game2">import turtle, random
+
+screen = turtle.Screen()
+screen.setup(600, 200)
+screen.title('Гонка черепашек')
+
+p1 = turtle.Turtle()
+p1.color('blue')
+p1.shape('turtle')
+p1.penup()
+p1.goto(-250, 20)
+
+p2 = turtle.Turtle()
+p2.color('red')
+p2.shape('turtle')
+p2.penup()
+p2.goto(-250, -20)
+
+finish_x = 250
+
+# Игровой цикл: пока никто не достиг финиша
+while p1.xcor() < finish_x and p2.xcor() < finish_x:
+    p1.forward(random.randint(1, 6))
+    p2.forward(random.randint(1, 6))
+
+if p1.xcor() > p2.xcor():
+    print('Победила синяя черепашка!')
+else:
+    print('Победила красная черепашка!')
+
+screen.mainloop()</textarea>
+
+      <div class="controls">
+        <button onclick="copyToTrinket('game2')">Copy for Trinket</button>
+        <button onclick="showNote('out2')">Пояснение (why while)</button>
+      </div>
+      <div id="out2" class="output" style="display:none">Цикл <code>while p1.xcor() &lt; finish_x and p2.xcor() &lt; finish_x</code> идёт до тех пор, пока оба не достигнут финишной линии. Это пример условия, когда мы не знаем заранее, сколько шагов потребуется.</div>
+    </section>
+
+    <section class="card">
+      <h2>Идеи для усложнения (на уроке)</h2>
+      <ul>
+        <li>Добавить таймер и ограничение по времени.</li>
+        <li>Добавить уровни сложности (увеличивать скорость падения яблока).</li>
+        <li>Сделать управление игрока в гонке (стрелки для первой черепашки, WASD для второй).</li>
+        <li>Добавить счётчик жизней: промахи уменьшают жизни.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Мини-викторина (закрепление)</h2>
+      <ol>
+        <li>Почему в этих играх используется <code>while</code>, а не <code>for</code>?</li>
+        <li>Что случится, если забыть изменить переменную состояния в теле <code>while</code> (или не будет условия выхода)?</li>
+        <li>Как остановить бесконечный цикл вручную в Trinket?</li>
+      </ol>
+    </section>
+
+    <footer class="small">Совет: вставьте код в Trinket (Python) — там turtle работает правильно. Кнопки Copy for Trinket копируют код в буфер.</footer>
+  </div>
+
+<script>
+function copyToTrinket(id){
+  const code = document.getElementById(id).value;
+  navigator.clipboard.writeText(code).then(()=>{
+    alert('Код скопирован в буфер. Вставьте в Trinket (Python) и запустите.');
+  }).catch(()=>{
+    alert('Не удалось скопировать. Выделите код и нажмите Ctrl+C.');
+  });
+}
+function showNote(id){ const el = document.getElementById(id); el.style.display = el.style.display==='block' ? 'none' : 'block'; }
+</script>
+</body>
+</html>
