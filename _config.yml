@@ -18,8 +18,5 @@ theme: minima
 include:
   - index.html
   - game.html
-  - python.html
   - tinker.html
-  - for.html
-  - while.html
-  - while_game.html
+  - python/*.html

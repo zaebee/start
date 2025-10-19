@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Итоговый тест: Программирование на Python - Junior</title>
+<style>
+  :root{
+    --bg:#f7fbff; --card:#fff; --accent:#0b3d91; --accent-2:#2b7a78; --muted:#445;
+  }
+  body{font-family:system-ui, -apple-system, Roboto, "Segoe UI", Arial; background:var(--bg); color:#102a43; margin:18px;}
+  .wrap{max-width:980px;margin:0 auto}
+  header{display:flex;align-items:center;gap:12px}
+  h1{color:var(--accent);margin:6px 0}
+  .small{font-size:13px;color:var(--muted)}
+  .card{background:var(--card);border-radius:10px;padding:14px;margin:14px 0;box-shadow:0 6px 18px rgba(10,20,40,0.06)}
+  .question{padding:12px;border-radius:8px;border:1px solid #e6f3ff;margin-bottom:10px;background:#fbfeff}
+  .q-title{font-weight:700;margin-bottom:8px}
+  label.option{display:block;padding:8px;border-radius:6px;margin-bottom:6px;border:1px solid #eaf4ff;cursor:pointer}
+  input[type="radio"]{margin-right:8px}
+  .controls{display:flex;gap:8px;margin-top:12px}
+  button{background:var(--accent);color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer}
+  button.secondary{background:var(--accent-2)}
+  #result{background:#001f3f;color:#e6f6ff;padding:12px;border-radius:8px;margin-top:12px;display:none}
+  .correct{background:#e6ffef;border-color:#c6f6d5}
+  .wrong{background:#fff0f0;border-color:#ffd6d6}
+  .info{font-size:13px;color:var(--muted);margin-top:8px}
+  .toprow{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .name-input{padding:8px;border-radius:6px;border:1px solid #dbeafe;font-size:14px}
+  .badge{background:var(--accent);color:#fff;padding:6px 10px;border-radius:8px;font-weight:700}
+  footer{font-size:13px;color:var(--muted);margin-top:14px}
+  @media(max-width:600px){ .toprow{flex-direction:column;align-items:stretch} }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>Итоговый тест: Программирование на Python — Junior</h1>
+        <div class="small">15 вопросов — выберите один правильный ответ на вопрос. Результат сохраняется локально.</div>
+      </div>
+      <div style="margin-left:auto"><span class="badge">Автосохранение</span></div>
+    </header>
+
+    <div class="card">
+      <div class="toprow">
+        <div>
+          <label for="studentName"><strong>Имя ученика</strong></label><br>
+          <input id="studentName" class="name-input" placeholder="Введите ваше имя" />
+        </div>
+        <div style="margin-left:auto">
+          <button id="resetAll" class="secondary">Очистить прогресс</button>
+        </div>
+      </div>
+    </div>
+
+    <form id="quizForm">
+      <!-- Questions -->
+      <!-- Q1 -->
+      <div class="card question" data-q="1">
+        <div class="q-title">1. Программирование это?</div>
+        <label class="option"><input type="radio" name="q1" value="1"> Процесс установки операционной системы и настройки компьютера для работы с интернетом.</label>
+        <label class="option"><input type="radio" name="q1" value="2"> Процесс составления алгоритмов и записи их с помощью специального языка, понятного машине.</label>
+        <label class="option"><input type="radio" name="q1" value="3"> Процесс настройки сетевого оборудования и управления маршрутизаторами для обеспечения доступа в интернет.</label>
+        <label class="option"><input type="radio" name="q1" value="4"> Процесс написания функций на Python.</label>
+      </div>
+
+      <!-- Q2 -->
+      <div class="card question" data-q="2">
+        <div class="q-title">2. Найди ошибку в коде.</div>
+        <label class="option"><input type="radio" name="q2" value="1"> Неправильно объявлен список студентов.</label>
+        <label class="option"><input type="radio" name="q2" value="2"> Неправильно определен индекс последнего студента.</label>
+        <label class="option"><input type="radio" name="q2" value="3"> Нельзя создать список только из строк.</label>
+        <label class="option"><input type="radio" name="q2" value="4"> Нельзя использовать одинарные кавычки в print().</label>
+      </div>
+
+      <!-- Q3 -->
+      <div class="card question" data-q="3">
+        <div class="q-title">3. Зачем нужны переменные?</div>
+        <label class="option"><input type="radio" name="q3" value="1"> Для создания таблиц.</label>
+        <label class="option"><input type="radio" name="q3" value="2"> Для хранения библиотек в Python.</label>
+        <label class="option"><input type="radio" name="q3" value="3"> Для создания чисел в Python.</label>
+        <label class="option"><input type="radio" name="q3" value="4"> Для хранения данных в коде.</label>
+      </div>
+
+      <!-- Q4 -->
+      <div class="card question" data-q="4">
+        <div class="q-title">4. Найди код без ошибок.</div>
+        <label class="option"><input type="radio" name="q4" value="1"> <code>print('Hello')</code></label>
+        <label class="option"><input type="radio" name="q4" value="2"> <code>print(Hello)</code></label>
+        <label class="option"><input type="radio" name="q4" value="3"> <code>if x = 5: print(x)</code></label>
+        <label class="option"><input type="radio" name="q4" value="4"> <code>for i in range 5: print(i)</code></label>
+      </div>
+
+      <!-- Q5 -->
+      <div class="card question" data-q="5">
+        <div class="q-title">5. Какой тип данных будет иметь результат вычислений?</div>
+        <label class="option"><input type="radio" name="q5" value="1"> bool</label>
+        <label class="option"><input type="radio" name="q5" value="2"> float</label>
+        <label class="option"><input type="radio" name="q5" value="3"> double</label>
+        <label class="option"><input type="radio" name="q5" value="4"> int</label>
+      </div>
+
+      <!-- Q6 -->
+      <div class="card question" data-q="6">
+        <div class="q-title">6. Что такое input()?</div>
+        <label class="option"><input type="radio" name="q6" value="1"> Одно из трех непростительных заклятий.</label>
+        <label class="option"><input type="radio" name="q6" value="2"> Функция для вывода данных.</label>
+        <label class="option"><input type="radio" name="q6" value="3"> Функция для ввода данных.</label>
+        <label class="option"><input type="radio" name="q6" value="4"> Функция для удаления данных.</label>
+      </div>
+
+      <!-- Q7 -->
+      <div class="card question" data-q="7">
+        <div class="q-title">7. Какие условные операторы есть в Python?</div>
+        <label class="option"><input type="radio" name="q7" value="1"> else, do, if</label>
+        <label class="option"><input type="radio" name="q7" value="2"> if, neif, else</label>
+        <label class="option"><input type="radio" name="q7" value="3"> elif, else, if</label>
+        <label class="option"><input type="radio" name="q7" value="4"> else, if, else if</label>
+      </div>
+
+      <!-- Q8 -->
+      <div class="card question" data-q="8">
+        <div class="q-title">8. Найди код без ошибок.</div>
+        <label class="option"><input type="radio" name="q8" value="1"> <code>for i in range(3): print(i)</code></label>
+        <label class="option"><input type="radio" name="q8" value="2"> <code>for i in range(3) print(i)</code></label>
+        <label class="option"><input type="radio" name="q8" value="3"> <code>while i < 3 print(i)</code></label>
+        <label class="option"><input type="radio" name="q8" value="4"> <code>if (x==3) print(x)</code></label>
+      </div>
+
+      <!-- Q9 -->
+      <div class="card question" data-q="9">
+        <div class="q-title">9. Найди ошибку в коде программы, которая считает сумму всех нечетных чисел в заданном диапазоне.</div>
+        <label class="option"><input type="radio" name="q9" value="1"> Ошибку вызывает \t.</label>
+        <label class="option"><input type="radio" name="q9" value="2"> Переменная number не увеличивается, поэтому цикл бесконечный.</label>
+        <label class="option"><input type="radio" name="q9" value="3"> Переменная finish должна быть строкой.</label>
+        <label class="option"><input type="radio" name="q9" value="4"> Переменная finish не увеличивается, поэтому цикл бесконечный.</label>
+      </div>
+
+      <!-- Q10 -->
+      <div class="card question" data-q="10">
+        <div class="q-title">10. Чем цикл for отличается от цикла while?</div>
+        <label class="option"><input type="radio" name="q10" value="1"> Цикл while работает медленнее цикла for.</label>
+        <label class="option"><input type="radio" name="q10" value="2"> Цикл while работает, пока выполняется условие, а for — определенное количество итераций.</label>
+        <label class="option"><input type="radio" name="q10" value="3"> Цикл for работает, пока выполняется условие, а while — определенное количество итераций.</label>
+        <label class="option"><input type="radio" name="q10" value="4"> Ничем не отличаются.</label>
+      </div>
+
+      <!-- Q11 -->
+      <div class="card question" data-q="11">
+        <div class="q-title">11. Найди код, который выполнится без ошибок.</div>
+        <label class="option"><input type="radio" name="q11" value="1"> <code>if x == 5: print(x)</code></label>
+        <label class="option"><input type="radio" name="q11" value="2"> <code>if x = 5: print(x)</code></label>
+        <label class="option"><input type="radio" name="q11" value="3"> <code>for i in range: print(i)</code></label>
+        <label class="option"><input type="radio" name="q11" value="4"> <code>print("Hello)</code></label>
+      </div>
+
+      <!-- Q12 -->
+      <div class="card question" data-q="12">
+        <div class="q-title">12. Что делает метод lower() у строки?</div>
+        <label class="option"><input type="radio" name="q12" value="1"> Преобразует текст в нижний регистр.</label>
+        <label class="option"><input type="radio" name="q12" value="2"> Уменьшает строку.</label>
+        <label class="option"><input type="radio" name="q12" value="3"> Унижает строку.</label>
+        <label class="option"><input type="radio" name="q12" value="4"> Опускает строку вниз.</label>
+      </div>
+
+      <!-- Q13 -->
+      <div class="card question" data-q="13">
+        <div class="q-title">13. Найдите код, который делает то же самое, что и изображено на картинке.</div>
+        <label class="option"><input type="radio" name="q13" value="1"> <code>t.forward(100)</code></label>
+        <label class="option"><input type="radio" name="q13" value="2"> <code>t.backward(100)</code></label>
+        <label class="option"><input type="radio" name="q13" value="3"> <code>t.left(90)</code></label>
+        <label class="option"><input type="radio" name="q13" value="4"> <code>t.right(90)</code></label>
+      </div>
+
+      <!-- Q14 -->
+      <div class="card question" data-q="14">
+        <div class="q-title">14. Найди код, который нарисует квадрат.</div>
+        <label class="option"><input type="radio" name="q14" value="1"> <code>for i in range(4): t.forward(100); t.right(90)</code></label>
+        <label class="option"><input type="radio" name="q14" value="2"> <code>for i in range(3): t.forward(100); t.right(120)</code></label>
+        <label class="option"><input type="radio" name="q14" value="3"> <code>t.circle(50)</code></label>
+        <label class="option"><input type="radio" name="q14" value="4"> <code>t.forward(400)</code></label>
+      </div>
+
+      <!-- Q15 -->
+      <div class="card question" data-q="15">
+        <div class="q-title">15. Найди код, который найдет четное число в списке и остановится.</div>
+        <label class="option"><input type="radio" name="q15" value="1"> 
+          <pre style="display:inline;background:transparent;border:none;padding:0;margin:0">for x in nums:\n    if x % 2 == 0:\n        print(x)\n        break</pre>
+        </label>
+        <label class="option"><input type="radio" name="q15" value="2"> 
+          <pre style="display:inline;background:transparent;border:none;padding:0;margin:0">for x in nums:\n    if x % 2 == 0:\n        print(x)</pre>
+        </label>
+        <label class="option"><input type="radio" name="q15" value="3"> 
+          <pre style="display:inline;background:transparent;border:none;padding:0;margin:0">for x in nums:\n    print(x)</pre>
+        </label>
+        <label class="option"><input type="radio" name="q15" value="4"> 
+          <pre style="display:inline;background:transparent;border:none;padding:0;margin:0">i = 0\nwhile i < len(nums):\n    print(nums[i])\n    i += 1</pre>
+        </label>
+      </div>
+
+      <div class="controls">
+        <button type="button" id="checkBtn">Проверить</button>
+        <button type="button" id="retryBtn" class="secondary">Пройти заново</button>
+        <button type="button" id="sendBtn" class="secondary">Отправить результат учителю</button>
+      </div>
+    </form>
+
+    <div id="result"></div>
+
+    <footer class="small">Результат сохраняется в браузере — при перезагрузке вы сможете продолжить с того же места.</footer>
+  </div>
+
+<script>
+/*
+  Автономный тест.
+  correctAnswers — индекс строки (строки значений "1","2"...)
+  Если нужно изменить правильные ответы — редактируйте этот массив.
+*/
+const correctAnswers = {
+  q1: "2",
+  q2: "2",   // выбрано 2 как наиболее вероятный ответ
+  q3: "4",
+  q4: "1",
+  q5: "2",   // предполагаемый ответ — float
+  q6: "3",
+  q7: "3",
+  q8: "1",
+  q9: "2",
+  q10: "2",
+  q11: "1",
+  q12: "1",
+  q13: "1",
+  q14: "1",
+  q15: "1"
+};
+
+// page elements
+const nameInput = document.getElementById('studentName');
+const resultDiv = document.getElementById('result');
+const checkBtn = document.getElementById('checkBtn');
+const retryBtn = document.getElementById('retryBtn');
+const sendBtn = document.getElementById('sendBtn');
+const form = document.getElementById('quizForm');
+
+// keys for localStorage
+const LS_NAME = 'py_junior_name_v1';
+const LS_ANS = 'py_junior_answers_v1';
+
+// restore saved name and answers
+function loadState() {
+  const savedName = localStorage.getItem(LS_NAME);
+  if (savedName) nameInput.value = savedName;
+  const saved = localStorage.getItem(LS_ANS);
+  if (saved) {
+    try {
+      const answers = JSON.parse(saved);
+      for (const q in answers) {
+        const v = answers[q];
+        const el = form.querySelector(`[name="${q}"][value="${v}"]`);
+        if (el) el.checked = true;
+      }
+    } catch(e) { console.warn('Restore failed', e); }
+  }
+}
+function saveState() {
+  localStorage.setItem(LS_NAME, nameInput.value || '');
+  // collect answers
+  const answers = {};
+  for (let i=1;i<=15;i++){
+    const name = 'q' + i;
+    const checked = form.querySelector(`[name="${name}"]:checked`);
+    if (checked) answers[name] = checked.value;
+  }
+  localStorage.setItem(LS_ANS, JSON.stringify(answers));
+}
+
+// update state on changes
+form.addEventListener('change', saveState);
+nameInput.addEventListener('input', saveState);
+
+// helper to clear highlights
+function clearHighlights(){
+  const blocks = document.querySelectorAll('.question');
+  blocks.forEach(b=>{
+    b.classList.remove('correct','wrong');
+    const labels = b.querySelectorAll('label.option');
+    labels.forEach(l=>l.style.opacity='1');
+  });
+  resultDiv.style.display='none';
+  resultDiv.innerHTML='';
+}
+
+// check answers
+function checkAnswers(){
+  // require name
+  const student = nameInput.value.trim();
+  if (!student) {
+    alert('Пожалуйста, введите имя ученика вверху перед проверкой.');
+    nameInput.focus();
+    return;
+  }
+
+  clearHighlights();
+
+  let score = 0;
+  let total = 15;
+  const wrongList = [];
+
+  for (let i=1;i<=15;i++){
+    const qname = 'q'+i;
+    const chosen = form.querySelector(`[name="${qname}"]:checked`);
+    const block = document.querySelector(`.question[data-q="${i}"]`);
+    // mark correct option visually
+    const correctVal = correctAnswers[qname];
+    const correctInput = block.querySelector(`[name="${qname}"][value="${correctVal}"]`);
+    if (chosen && chosen.value === correctVal) {
+      score += 1;
+      block.classList.add('correct');
+    } else {
+      block.classList.add('wrong');
+      wrongList.push(i);
+    }
+    // highlight correct answer label
+    if (correctInput) {
+      const correctLabel = correctInput.closest('label.option');
+      if (correctLabel) correctLabel.style.borderColor = '#66d59a';
+    }
+    // dim others
+    const labels = block.querySelectorAll('label.option');
+    labels.forEach(l=>{
+      const inp = l.querySelector('input');
+      if (inp && inp.value !== correctVal) l.style.opacity = '0.9';
+    });
+  }
+
+  const percent = Math.round((score/total)*100);
+  let message = '';
+  if (score >= 13) message = 'Отлично!';
+  else if (score >= 10) message = 'Хорошо!';
+  else if (score >= 7) message = 'Неплохо, но можно лучше!';
+  else message = 'Попробуй ещё раз!';
+
+  resultDiv.style.display='block';
+  resultDiv.innerHTML = `<strong>Ученик:</strong> ${escapeHtml(student)}<br>
+                         <strong>Баллы:</strong> ${score}/${total} (${percent}%) — <em>${message}</em>`;
+  // save last result
+  localStorage.setItem(LS_NAME, student);
+  localStorage.setItem('py_junior_last_result_v1', JSON.stringify({student, score, total, percent, when:Date.now()}));
+}
+
+// retry: clear answers
+function retry(){
+  if (!confirm('Очистить ответы и начать заново?')) return;
+  const inputs = form.querySelectorAll('input[type="radio"]');
+  inputs.forEach(i=>i.checked = false);
+  clearHighlights();
+  saveState();
+}
+
+// send result: copy to clipboard
+function sendResult(){
+  const student = nameInput.value.trim();
+  if (!student) { alert('Введите имя ученика'); nameInput.focus(); return; }
+  const last = localStorage.getItem('py_junior_last_result_v1');
+  if (!last) { alert('Сначала нажмите Проверить, чтобы получить результат.'); return; }
+  const data = JSON.parse(last);
+  const text = `Результат теста: ${data.student} — ${data.score}/${data.total} (${data.percent}%)`;
+  navigator.clipboard.writeText(text).then(()=>{
+    alert('Результат скопирован в буфер. Отправьте его учителю (в чат или почту).');
+  }).catch(()=>{ alert('Не удалось скопировать автоматически. Выделите и нажмите Ctrl+C.'); });
+}
+
+// small helper
+function escapeHtml(str){ return String(str).replace(/[&<>"']/g, function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m];}); }
+
+// attach handlers
+checkBtn.addEventListener('click', checkAnswers);
+retryBtn.addEventListener('click', retry);
+sendBtn.addEventListener('click', sendResult);
+document.getElementById('resetAll').addEventListener('click', ()=>{
+  if (!confirm('Удалить сохранённый прогресс и имя?')) return;
+  localStorage.removeItem(LS_NAME);
+  localStorage.removeItem(LS_ANS);
+  localStorage.removeItem('py_junior_last_result_v1');
+  location.reload();
+});
+
+// restore on load
+loadFromStorageOnStart();
+function loadFromStorageOnStart(){
+  try { 
+    const savedName = localStorage.getItem(LS_NAME);
+    if (savedName) nameInput.value = savedName;
+    const saved = localStorage.getItem(LS_ANS);
+    if (saved) {
+      const answers = JSON.parse(saved);
+      for (const q in answers) {
+        const v = answers[q];
+        const el = form.querySelector(`[name="${q}"][value="${v}"]`);
+        if (el) el.checked = true;
+      }
+    }
+  } catch(e) { console.warn(e); }
+}
+</script>
+</body>
+</html>
