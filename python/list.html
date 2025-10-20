@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Урок 8: Списки в Python 🐍</title>
+<style>
+  body {
+    font-family: "Comic Sans MS", sans-serif;
+    background: #fffaf6;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+  }
+  h1 {
+    text-align: center;
+    color: #ff6b00;
+  }
+  .task {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    margin: 20px auto;
+    padding: 16px 20px;
+    max-width: 800px;
+  }
+  pre {
+    background: #f4f4f4;
+    padding: 12px;
+    border-radius: 8px;
+    overflow-x: auto;
+  }
+  button {
+    background: #ffb347;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 8px 12px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  button:hover {
+    background: #ff9900;
+  }
+  .hint {
+    display: none;
+    margin-top: 10px;
+    background: #fff8e1;
+    border-left: 4px solid #ffb300;
+    padding: 8px;
+    border-radius: 4px;
+  }
+  textarea {
+    width: 100%;
+    height: 120px;
+    border-radius: 8px;
+    padding: 8px;
+    margin-top: 10px;
+    font-family: monospace;
+    resize: vertical;
+  }
+</style>
+</head>
+<body>
+
+<h1>🐍 Урок 8: Списки в Python</h1>
+<p style="text-align:center;">Сегодня учимся создавать списки, изменять их и использовать в циклах. Попробуй выполнить задания!</p>
+
+<div class="task">
+  <h3>Задание 1. Любимые животные 🐾</h3>
+  <p>Создай список своих любимых животных. Выведи первое и последнее животное из списка.</p>
+  <pre>animals = ["кот", "собака", "ежик"]
+print(animals)</pre>
+  <button onclick="toggleHint(this)">Показать подсказку</button>
+  <div class="hint">Попробуй: <code>print(animals[0])</code> и <code>print(animals[-1])</code></div>
+  <textarea placeholder="Напиши свой код здесь..."></textarea>
+</div>
+
+<div class="task">
+  <h3>Задание 2. Любимые игры 🎮</h3>
+  <p>Создай список из 5 любимых игр. Замени одну игру и выведи обновлённый список.</p>
+  <pre>games = ["Minecraft", "Roblox", "Terraria", "Fortnite", "Among Us"]</pre>
+  <button onclick="toggleHint(this)">Показать подсказку</button>
+  <div class="hint">Измени элемент: <code>games[1] = "Brawl Stars"</code></div>
+  <textarea placeholder="Пиши свой код..."></textarea>
+</div>
+
+<div class="task">
+  <h3>Задание 3. Сумма чисел ➕</h3>
+  <p>Создай список чисел и найди их сумму.</p>
+  <pre>numbers = [2, 4, 6, 8]</pre>
+  <button onclick="toggleHint(this)">Показать подсказку</button>
+  <div class="hint">Используй: <code>print(sum(numbers))</code></div>
+  <textarea placeholder="Пиши свой код..."></textarea>
+</div>
+
+<div class="task">
+  <h3>Задание 4. Подсчёт оценок 📊</h3>
+  <p>Найди среднюю оценку и количество пятёрок.</p>
+  <pre>marks = [5, 4, 5, 3, 4]</pre>
+  <button onclick="toggleHint(this)">Показать подсказку</button>
+  <div class="hint">Среднее: <code>sum(marks)/len(marks)</code><br>Сколько пятёрок: <code>marks.count(5)</code></div>
+  <textarea placeholder="Пиши свой код..."></textarea>
+</div>
+
+<div class="task">
+  <h3>Задание 5. Цветная черепашка 🎨</h3>
+  <p>Черепашка рисует квадрат с разными цветами!</p>
+  <pre>import turtle
+t = turtle.Turtle()
+colors = ["red", "green", "blue", "orange"]
+for c in colors:
+    t.color(c)
+    t.forward(50)
+    t.right(90)
+turtle.done()</pre>
+  <button onclick="toggleHint(this)">Показать подсказку</button>
+  <div class="hint">Добавь ещё один цвет и измени угол — будет круче!</div>
+  <textarea placeholder="Пиши свой код..."></textarea>
+</div>
+
+<div class="task">
+  <h3>Задание 6. Приглашения 💌</h3>
+  <p>Создай список друзей и напиши каждому приглашение на праздник.</p>
+  <pre>friends = ["Аня", "Макс", "Даня"]</pre>
+  <button onclick="toggleHint(this)">Показать подсказку</button>
+  <div class="hint">Используй цикл:<br><code>for f in friends:<br>&nbsp;&nbsp;print("Привет,", f, "!")</code></div>
+  <textarea placeholder="Пиши свой код..."></textarea>
+</div>
+
+<script>
+function toggleHint(btn) {
+  const hint = btn.nextElementSibling;
+  hint.style.display = hint.style.display === "block" ? "none" : "block";
+}
+</script>
+
+</body>
+</html>
