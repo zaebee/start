@@ -20,3 +20,4 @@ include:
   - game.html
   - tinker.html
   - python/*.html
+  - flappy/*.html
