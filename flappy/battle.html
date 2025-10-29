@@ -1,35 +1,163 @@
 <!doctype html>
 <html lang="ru">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Flappy Battle — Финальный раунд</title>
   <style>
-    :root{--bg:#0b1324;--card:#0e1b32;--accent:#22c55e;--muted:#9ca3af;--red:#ef4444;--glass:rgba(255,255,255,0.05)}
-    html,body{margin:0;padding:0;font-family:Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,#060e1a 0%,#0a1222 80%);color:#e6eef8;min-height:100vh}
-    .wrap{max-width:960px;margin:auto;padding:20px}
-    header{display:flex;align-items:center;gap:12px;margin-bottom:18px}
-    .logo{width:70px;height:70px;border-radius:12px;background:linear-gradient(135deg,#18304a,#0f3b2f);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent)}
-    h1{margin:0;font-size:24px}
-    .lead{color:var(--muted);margin:4px 0 16px}
-    canvas{background:#000;border-radius:10px;display:block;margin:20px auto;box-shadow:0 4px 20px rgba(0,0,0,0.6)}
-    .controls{text-align:center;margin-top:12px}
-    button{background:transparent;color:#e6eef8;border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:8px 16px;margin:4px;cursor:pointer;transition:.2s}
-    button:hover{background:var(--accent);color:#000;border-color:var(--accent)}
-    .score{text-align:center;margin-top:10px;font-size:18px;color:var(--accent)}
-    footer{text-align:center;margin-top:30px;font-size:13px;color:var(--muted)}
-    .instructions{background:rgba(255,255,255,0.05);border-radius:12px;padding:16px;margin-top:30px}
-    pre{background:rgba(0,0,0,0.4);padding:10px;border-radius:8px;overflow-x:auto;color:#d1fae5;font-size:14px}
-    h2{margin-top:0;color:var(--accent)}
+    :root {
+      --bg: #0b1324;
+      --card: #0e1b32;
+      --accent: #22c55e;
+      --muted: #9ca3af;
+      --red: #ef4444;
+      --glass: rgba(255, 255, 255, 0.05)
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Inter, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background: linear-gradient(180deg, #060e1a 0%, #0a1222 80%);
+      color: #e6eef8;
+      min-height: 100vh;
+      overflow-x: hidden
+    }
+
+    .wrap {
+      max-width: 960px;
+      margin: auto;
+      padding: 20px
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px
+    }
+
+    .logo {
+      width: 70px;
+      height: 70px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #18304a, #0f3b2f);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--accent)
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 24px
+    }
+
+    .lead {
+      color: var(--muted);
+      margin: 4px 0 16px
+    }
+
+    canvas {
+      background: #000;
+      border-radius: 10px;
+      display: block;
+      margin: 20px auto;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6)
+    }
+
+    .controls {
+      text-align: center;
+      margin-top: 12px
+    }
+
+    button {
+      background: transparent;
+      color: #e6eef8;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      padding: 8px 16px;
+      margin: 4px;
+      cursor: pointer;
+      transition: .2s
+    }
+
+    button:hover {
+      background: var(--accent);
+      color: #000;
+      border-color: var(--accent)
+    }
+
+    .score {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 18px;
+      color: var(--accent)
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 13px;
+      color: var(--muted)
+    }
+
+    .instructions {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 16px;
+      margin-top: 30px
+    }
+
+    pre {
+      background: rgba(0, 0, 0, 0.4);
+      padding: 10px;
+      border-radius: 8px;
+      overflow-x: auto;
+      color: #d1fae5;
+      font-size: 14px
+    }
+
+    h2 {
+      margin-top: 0;
+      color: var(--accent)
+    }
+
+    details {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      padding: 10px;
+      margin-top: 10px;
+      cursor: pointer
+    }
+
+    summary {
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--accent);
+      outline: none;
+      user-select: none
+    }
+
+    ul {
+      margin: 8px 0 0 20px;
+      color: #e6eef8;
+      font-size: 14px
+    }
   </style>
 </head>
+
 <body>
   <div class="wrap">
     <header>
       <div class="logo">FB</div>
       <div>
         <h1>Flappy Battle — Финальный раунд</h1>
-        <p class="lead">Веб-версия нашей игры Flappy Micro:bit! Управляй птичкой, избегай труб, соревнуйся за лучший результат. Теперь можно подключить настоящий Micro:bit!</p>
+        <p class="lead">Веб-версия нашей игры Flappy Micro:bit! Управляй птичкой, избегай труб, соревнуйся за лучший
+          результат. Теперь можно подключить настоящий Micro:bit!</p>
       </div>
     </header>
 
@@ -42,17 +170,51 @@
     </div>
     <div class="score">Счёт: <span id="score">0</span></div>
 
+    <!-- 🧩 Задания (сворачиваемые блоки) -->
+    <section style="margin-top:30px">
+      <h2>🎯 Задания для любопытных</h2>
+      <details>
+        <summary>🐣 Уровень 1 — Простые улучшения</summary>
+        <ul>
+          <li>Поменяй стартовую скорость и размер птички.</li>
+          <li>Добавь звук прыжка или мигание Micro:bit при нажатии кнопки.</li>
+          <li>Измени частоту появления труб (подсказка: переменная <code>frame % 90</code>).</li>
+        </ul>
+      </details>
+      <details>
+        <summary>🚀 Уровень 2 — Продвинутые фичи</summary>
+        <ul>
+          <li>Сделай ускорение труб после 10 очков.</li>
+          <li>Добавь сохранение рекорда через <code>localStorage</code>.</li>
+          <li>Добавь кнопку паузы (например, клавиша P).</li>
+        </ul>
+      </details>
+      <details>
+        <summary>🧠 Уровень 3 — Супер миссии</summary>
+        <ul>
+          <li>Добавь поддержку команд Micro:bit: <code>S</code> — пауза, <code>D</code> — режим турбо.</li>
+          <li>Сделай мультиплеер с двумя Micro:bit (через радио).</li>
+          <li>Придумай свою уникальную механику и добавь её!</li>
+        </ul>
+      </details>
+    </section>
+
     <div class="instructions">
       <h2>🧠 Инструкция: как подключить Micro:bit</h2>
-      <p>Чтобы управлять птичкой с помощью Micro:bit, нужно прошить устройство короткой программой. Когда Micro:bit подключён к компьютеру, он будет отправлять в браузер команду <code>UP</code> при нажатии кнопки A или наклоне вверх.</p>
+      <p>Чтобы управлять птичкой с помощью Micro:bit, нужно прошить устройство короткой программой. Когда Micro:bit
+        подключён к компьютеру, он будет отправлять в браузер команду <code>U</code> при нажатии кнопки A или наклоне
+        вверх, а <code>R</code> — для перезапуска игры.</p>
 
       <h3>🔹 Вариант 1. MakeCode (JS)</h3>
       <pre>basic.forever(function() {
     if (input.buttonIsPressed(Button.A)) {
-        serial.writeLine("UP")
+        serial.writeLine("U")
     }
     if (input.acceleration(Dimension.Y) < -200) {
-        serial.writeLine("UP")
+        serial.writeLine("U")
+    }
+    if (input.buttonIsPressed(Button.B)) {
+        serial.writeLine("R")
     }
     basic.pause(100)
 })</pre>
@@ -62,14 +224,18 @@
 
 while True:
     if button_a.is_pressed() or accelerometer.get_y() < -200:
-        uart.write('UP\n')
+        uart.write('U\n')
+    if button_b.is_pressed():
+        uart.write('R\n')
     sleep(100)</pre>
 
-      <p>После прошивки нажмите кнопку <strong>«Подключить Micro:bit»</strong> выше. Разрешите доступ в браузере (Chrome / Edge). После подключения нажмите <strong>«Начать игру»</strong> и управляйте птичкой настоящим устройством!</p>
+      <p>После прошивки нажмите кнопку <strong>«Подключить Micro:bit»</strong>. Разрешите доступ в браузере (Chrome /
+        Edge). После подключения нажмите <strong>«Начать игру»</strong> и управляйте птичкой настоящим устройством!</p>
     </div>
 
     <footer>
-      Управляй с помощью пробела, кнопки «Вверх» или через Micro:bit. Подключи устройство и используй кнопки или наклон для полёта! 🚀
+      Управляй с помощью пробела, кнопки «Вверх» или через Micro:bit. Подключи устройство и используй кнопки или наклон
+      для полёта! 🚀
     </footer>
   </div>
 
@@ -78,89 +244,101 @@ while True:
     const ctx = canvas.getContext('2d');
     const scoreEl = document.getElementById('score');
 
-    let bird = {x:60,y:150,vy:0,size:16};
+    let bird = { x: 60, y: 150, vy: 0, size: 16 };
     let pipes = [];
     let frame = 0;
     let score = 0;
     let alive = false;
     let running = false;
     let port = null;
+    let animationId = null;
 
-	let animationId = null;
-	
+    // 🧩 TODO-0: попробуй поменять стартовую высоту или скорость птички
+    // bird = { x: 60, y: 120, vy: -1, size: 20 };
+
     function reset() {
-	  if (animationId) cancelAnimationFrame(animationId);
-	  bird = { x: 60, y: 150, vy: 0, size: 16 };
-	  pipes = [];
-	  frame = 0;
-	  score = 0;
-	  alive = true;
-	  running = true;
-	  scoreEl.textContent = 0;
-	  draw();
-	  animationId = requestAnimationFrame(update);
-	}
+      if (animationId) cancelAnimationFrame(animationId);
+      bird = { x: 60, y: 150, vy: 0, size: 16 };
+      pipes = [];
+      frame = 0;
+      score = 0;
+      alive = true;
+      running = true;
+      scoreEl.textContent = 0;
+      draw();
+      animationId = requestAnimationFrame(update);
+    }
 
-    function jump(){
-      if(!alive) return;
+    function jump() {
+      if (!alive) return;
       bird.vy = -4;
+      // 🧩 TODO-1: добавь звук прыжка! (через new Audio('jump.mp3').play() или micro:bit свет)
     }
 
     function update() {
-	  if (!running) return;
-	  if (!alive) {
-		draw();
-		return;
-	  }
+      if (!running) return;
+      if (!alive) {
+        draw();
+        return;
+      }
 
-	  frame++;
-	  bird.vy += 0.25;
-	  bird.y += bird.vy;
+      frame++;
+      bird.vy += 0.25;
+      bird.y += bird.vy;
 
-	  if (frame % 90 === 0) {
-		let gapY = Math.random() * 200 + 80;
-		pipes.push({ x: canvas.width, gapY });
-	  }
+      // 🧩 TODO-2: попробуй изменить сложность (частоту труб)
+      // Подсказка: сейчас новые трубы каждые 90 кадров
+      if (frame % 90 === 0) {
+        let gapY = Math.random() * 200 + 80;
+        pipes.push({ x: canvas.width, gapY });
+      }
 
-	  pipes.forEach(p => (p.x -= 2));
-	  pipes = pipes.filter(p => p.x > -50);
+      pipes.forEach(p => (p.x -= 2));
+      pipes = pipes.filter(p => p.x > -50);
 
-	  pipes.forEach(p => {
-		if (p.x + 40 < bird.x && !p.passed) {
-		  score++;
-		  p.passed = true;
-		  scoreEl.textContent = score;
-		}
-		if (bird.x + bird.size > p.x && bird.x < p.x + 40) {
-		  if (bird.y < p.gapY - 50 || bird.y + bird.size > p.gapY + 50) alive = false;
-		}
-	  });
+      pipes.forEach(p => {
+        if (p.x + 40 < bird.x && !p.passed) {
+          score++;
+          p.passed = true;
+          scoreEl.textContent = score;
+          // 🧩 TODO-3: добавь увеличение скорости труб с ростом очков
+          // например, если (score > 10) p.x -= 3 вместо 2
+        }
 
-	  if (bird.y < 0 || bird.y > canvas.height - 20) alive = false;
-
-	  draw();
-	  animationId = requestAnimationFrame(update);
-	}
-
-    function draw(){
-      ctx.fillStyle='#000';
-      ctx.fillRect(0,0,canvas.width,canvas.height);
-
-      ctx.fillStyle='#22c55e';
-      pipes.forEach(p=>{
-        ctx.fillRect(p.x,0,40,p.gapY-50);
-        ctx.fillRect(p.x,p.gapY+50,40,canvas.height);
+        // Столкновение
+        if (bird.x + bird.size > p.x && bird.x < p.x + 40) {
+          if (bird.y < p.gapY - 50 || bird.y + bird.size > p.gapY + 50) alive = false;
+        }
       });
 
-      ctx.fillStyle=alive?'#e6eef8':'#ef4444';
+      if (bird.y < 0 || bird.y > canvas.height - 20) alive = false;
+
+      draw();
+      animationId = requestAnimationFrame(update);
+    }
+
+    function draw() {
+      ctx.fillStyle = '#000';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = '#22c55e';
+      pipes.forEach(p => {
+        ctx.fillRect(p.x, 0, 40, p.gapY - 50);
+        ctx.fillRect(p.x, p.gapY + 50, 40, canvas.height);
+      });
+
+      ctx.fillStyle = alive ? '#e6eef8' : '#ef4444';
       ctx.beginPath();
-      ctx.arc(bird.x,bird.y,bird.size/2,0,Math.PI*2);
+      ctx.arc(bird.x, bird.y, bird.size / 2, 0, Math.PI * 2);
       ctx.fill();
 
-      if(!alive){
-        ctx.fillStyle='#ef4444';
-        ctx.font='24px sans-serif';
-        ctx.fillText('Игра окончена',90,180);
+      if (!alive) {
+        ctx.fillStyle = '#ef4444';
+        ctx.font = '24px sans-serif';
+        ctx.fillText('Игра окончена', 90, 180);
+
+        // 🧩 TODO-4: добавь показ лучшего результата!
+        // hint: сохраняй score в localStorage и сравнивай
       }
     }
 
@@ -184,20 +362,30 @@ while True:
           if (done) break;
           const line = value.trim();
           if (line === 'U') jump();
-		  if (line === 'R') reset();
+          if (line === 'R') reset();
+          // 🧩 TODO-5: попробуй добавить команду "S" для паузы (toggle running)
         }
       } catch (err) {
         alert('Ошибка подключения: ' + err);
       }
     }
 
-    document.addEventListener('keydown',e=>{if(e.code==='Space')jump();});
-    document.getElementById('btnUp').onclick=jump;
-    document.getElementById('btnRestart').onclick=()=>{reset();};
-    document.getElementById('btnStart').onclick=()=>{reset();};
-    document.getElementById('btnConnect').onclick=connectMicrobit;
+    document.addEventListener('keydown', e => {
+      if (e.code === 'Space') {
+        e.preventDefault(); // чтобы не скроллило
+        jump();
+      }
+      // 🧩 TODO-6: добавь дополнительное управление (например, стрелкой вверх)
+    });
+
+    document.getElementById('btnUp').onclick = jump;
+    document.getElementById('btnRestart').onclick = reset;
+    document.getElementById('btnStart').onclick = reset;
+    document.getElementById('btnConnect').onclick = connectMicrobit;
 
     draw();
   </script>
+
 </body>
+
 </html>
