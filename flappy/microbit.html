@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Flappy Micro:bit — Лист заданий</title>
+  <style>
+    :root{--bg:#0f1724;--card:#0b1220;--accent:#22c55e;--muted:#94a3b8;--glass:rgba(255,255,255,0.04)}
+    html,body{height:100%;margin:0;font-family:Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,#071328 0%,#071826 60%);color:#e6eef8}
+    .wrap{max-width:900px;margin:28px auto;padding:20px}
+    header{display:flex;gap:16px;align-items:center}
+    .logo{width:70px;height:70px;border-radius:12px;background:linear-gradient(135deg,#18304a,#0f3b2f);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent);box-shadow:0 6px 18px rgba(2,6,23,0.6)}
+    h1{margin:0;font-size:20px}
+    p.lead{margin:6px 0 18px;color:var(--muted)}
+    .card{background:var(--card);border-radius:12px;padding:16px;margin-bottom:14px;box-shadow:0 8px 24px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
+    .small{font-size:13px;color:var(--muted)}
+    .grid{display:grid;grid-template-columns:1fr 280px;gap:14px}
+    .tasks{list-style:none;padding:0;margin:0}
+    .task{padding:12px;border-radius:10px;background:var(--glass);margin-bottom:10px}
+    .task h3{margin:0;font-size:15px}
+    .task p{margin:6px 0;color:var(--muted)}
+    .hint{font-size:13px;color:#cfead6;background:rgba(34,197,94,0.07);padding:8px;border-radius:8px}
+    pre{background:rgba(0,0,0,0.25);padding:10px;border-radius:8px;overflow:auto;font-family:ui-monospace,monospace;font-size:13px}
+    footer{margin-top:10px;color:var(--muted);font-size:13px;text-align:center}
+    .btn{display:inline-block;padding:8px 12px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.06);cursor:pointer}
+    @media (max-width:880px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">MB</div>
+      <div>
+        <h1>Flappy Micro:bit — лист заданий</h1>
+        <p class="lead">Краткий набор миссий для урока по разбору Flappy Bird. Выбирайте уровень сложности и выполняйте — в конце подготовимся к финальной «битве».</p>
+      </div>
+    </header>
+
+    <section class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+        <div>
+          <div class="small">Урок</div>
+          <strong>Разбор Flappy Bird на Micro:bit</strong>
+        </div>
+        <div style="text-align:right">
+          <div class="small">Время</div>
+          <strong>80 минут</strong>
+        </div>
+      </div>
+    </section>
+
+    <div class="grid">
+      <main>
+        <section class="card">
+          <h2 style="margin-top:0">Миссии (выберите 1–2)</h2>
+
+          <ul class="tasks">
+            <li class="task">
+              <h3>Уровень 1 — Закрепление (15–20 мин)</h3>
+              <p class="small">Быстрые правки для понимания механики и синтаксиса.</p>
+              <ul class="small">
+                <li>1. Уменьшите время паузы → игра станет быстрее.</li>
+                <li>2. Поставьте птицу стартовать в Y = 1 или 3.</li>
+                <li>3. Уберите кнопку B — пусть птица падает автоматически (имитация гравитации).</li>
+              </ul>
+            </li>
+
+            <li class="task">
+              <h3>Уровень 2 — Игровые фичи (20–25 мин)</h3>
+              <p class="small">Добавьте счёт, ускорение и визуальные подсказки.</p>
+              <ul class="small">
+                <li>1. Счёт — +1 за каждое успешно пройденное препятствие.</li>
+                <li>2. Игра постепенно ускоряется: уменьшайте паузу по таймеру.</li>
+                <li>3. При смерти показывайте счёт (scroll или showNumber).</li>
+              </ul>
+            </li>
+
+            <li class="task">
+              <h3>Уровень 3 — Креатив (25–30 мин)</h3>
+              <p class="small">Добавьте одну заметную фишку, которую можно использовать в финале.</p>
+              <ul class="small">
+                <li>Бонусы: дополнительные очки за «звёздочку».</li>
+                <li>Множественные жизни: 3 жизни вместо одного удара.</li>
+                <li>Альтернативный контроль: акселерометр вместо кнопок.</li>
+                <li>Анимация птицы: меняйте яркость или мигание при полёте.</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section class="card">
+          <h2 style="margin-top:0">Подсказки</h2>
+          <div class="hint">Подумайте, какая механика будет честной в соревновании: ускорение, бонусы или жизни — влияет на баланс между «лучшей» и «самой сложной» версиями.</div>
+
+          <h3 style="margin-top:12px">Короткие сниппеты</h3>
+          <div class="small">Гравитация (JS):</div>
+          <pre>basic.forever(function() {
+    bird.change(LedSpriteProperty.Y, 1)
+    basic.pause(700)
+})</pre>
+
+          <div class="small">Увеличение скорости со временем (псевдо):</div>
+          <pre>let speed = 1000
+// в цикле: basic.pause(speed)
+// каждые N тиков: speed = Math.max(150, speed - 50)</pre>
+
+          <div class="small">Счёт: увеличивать, когда препятствие уходит влево:</div>
+          <pre>if (obstacle.get(LedSpriteProperty.X) == 0) {
+  score += 1
+}
+// показывать score по кнопке B
+</pre>
+        </section>
+
+        <section class="card">
+          <h2 style="margin-top:0">Подготовка к финальной битве</h2>
+          <ul class="small">
+            <li>Определите, какие фичи разрешены (жизни, бонусы, ускорение).</li>
+            <li>Каждая команда делает &lt;= 2 заметных улучшения.</li>
+            <li>На следующей сессии перенесём логику в браузер и устроим турнир.</li>
+          </ul>
+        </section>
+      </main>
+
+      <aside>
+        <section class="card">
+          <h3 style="margin-top:0">Быстрый чек-лист для ученика</h3>
+          <ol class="small">
+            <li>Запусти примерный код на Micro:bit (демо на экране).</li>
+            <li>Внеси 1–2 изменения — протестируй.</li>
+            <li>Если есть идея — реализуй фичу и протестируй снова.</li>
+            <li>Запиши своё имя + краткое описание фичи (для финальной битвы).</li>
+          </ol>
+          <div style="margin-top:10px;text-align:center">
+            <button class="btn" onclick="window.print()">Распечатать лист</button>
+          </div>
+        </section>
+
+        <section class="card">
+          <h3 style="margin-top:0">Домашнее (необязательно)</h3>
+          <p class="small">Подумай над одной фичей, которую можно показать в финале: скетч интерфейса в браузере, идея бонуса, или простая баланс-механика.</p>
+        </section>
+      </aside>
+    </div>
+
+    <footer>
+      Готовы к финальной битве?
+    </footer>
+  </div>
+</body>
+</html>

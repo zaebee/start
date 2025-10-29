@@ -1,151 +1,137 @@
 <!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Flappy Micro:bit — Лист заданий</title>
-  <style>
-    :root{--bg:#0f1724;--card:#0b1220;--accent:#22c55e;--muted:#94a3b8;--glass:rgba(255,255,255,0.04)}
-    html,body{height:100%;margin:0;font-family:Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,#071328 0%,#071826 60%);color:#e6eef8}
-    .wrap{max-width:900px;margin:28px auto;padding:20px}
-    header{display:flex;gap:16px;align-items:center}
-    .logo{width:70px;height:70px;border-radius:12px;background:linear-gradient(135deg,#18304a,#0f3b2f);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent);box-shadow:0 6px 18px rgba(2,6,23,0.6)}
-    h1{margin:0;font-size:20px}
-    p.lead{margin:6px 0 18px;color:var(--muted)}
-    .card{background:var(--card);border-radius:12px;padding:16px;margin-bottom:14px;box-shadow:0 8px 24px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
-    .small{font-size:13px;color:var(--muted)}
-    .grid{display:grid;grid-template-columns:1fr 280px;gap:14px}
-    .tasks{list-style:none;padding:0;margin:0}
-    .task{padding:12px;border-radius:10px;background:var(--glass);margin-bottom:10px}
-    .task h3{margin:0;font-size:15px}
-    .task p{margin:6px 0;color:var(--muted)}
-    .hint{font-size:13px;color:#cfead6;background:rgba(34,197,94,0.07);padding:8px;border-radius:8px}
-    pre{background:rgba(0,0,0,0.25);padding:10px;border-radius:8px;overflow:auto;font-family:ui-monospace,monospace;font-size:13px}
-    footer{margin-top:10px;color:var(--muted);font-size:13px;text-align:center}
-    .btn{display:inline-block;padding:8px 12px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.06);cursor:pointer}
-    @media (max-width:880px){.grid{grid-template-columns:1fr}}
-  </style>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Финальный баттл — Flappy Battle</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;600&display=swap');
+
+  :root {
+    --accent: #ff006a;
+  }
+
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Orbitron", sans-serif;
+    color: white;
+    background: linear-gradient(270deg, var(--accent), #4400ff, #00eaff);
+    background-size: 600% 600%;
+    animation: gradient 12s ease infinite;
+    overflow: hidden;
+    transition: background 1s ease;
+  }
+
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  section {
+    display: none;
+    text-align: center;
+    padding: 20px;
+    max-width: 820px;
+  }
+  section.active { display: block; }
+
+  h1 {
+    font-size: 3rem;
+    margin: 0;
+    text-shadow: 0 0 25px #000;
+  }
+  h2 {
+    font-size: 1.8rem;
+    margin-top: 20px;
+    color: #ffeb3b;
+    text-shadow: 0 0 20px #000;
+  }
+  ul {
+    text-align: left;
+    display: inline-block;
+    font-family: "Inter", sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 20px 0;
+  }
+  code {
+    background: rgba(255,255,255,0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #00ffe5;
+  }
+  .btn {
+    margin-top: 40px;
+    padding: 16px 32px;
+    background: rgba(255,255,255,0.15);
+    border: 2px solid white;
+    color: white;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .btn:hover {
+    background: white;
+    color: black;
+  }
+  .hint {
+    margin-top: 40px;
+    font-size: 1rem;
+    color: rgba(255,255,255,0.7);
+    font-family: "Inter", sans-serif;
+  }
+</style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="logo">MB</div>
-      <div>
-        <h1>Flappy Micro:bit — лист заданий</h1>
-        <p class="lead">Краткий набор миссий для урока по разбору Flappy Bird. Выбирайте уровень сложности и выполняйте — в конце подготовимся к финальной «битве».</p>
-      </div>
-    </header>
 
-    <section class="card">
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
-        <div>
-          <div class="small">Урок</div>
-          <strong>Разбор Flappy Bird на Micro:bit</strong>
-        </div>
-        <div style="text-align:right">
-          <div class="small">Время</div>
-          <strong>80 минут</strong>
-        </div>
-      </div>
-    </section>
+  <!-- 🕹️ Экран 1 -->
+  <section id="screen1" class="active">
+    <h1>🎮 Финальный баттл</h1>
+    <h2>Flappy Battle — Одиночный режим 🐦</h2>
+    <button class="btn" onclick="nextScreen()">▶ Войти в арену</button>
+    <div class="hint">Micro:bit, экран и стальные нервы готовы?</div>
+  </section>
 
-    <div class="grid">
-      <main>
-        <section class="card">
-          <h2 style="margin-top:0">Миссии (выберите 1–2)</h2>
+  <!-- 📜 Экран 2 -->
+  <section id="screen2">
+    <h1>Миссия: Пройди все трубы 💥</h1>
+    <ul>
+      <li>Подключи <b>свой Micro:bit</b> к ноутбуку.</li>
+      <li>Загрузи код, который отправляет <code>"U"</code> при прыжке.</li>
+      <li>Нажимай кнопку <b>A</b> или наклоняй устройство вверх, чтобы птица подпрыгивала.</li>
+      <li>Не врежься в трубы! Каждая секунда — очко славы 🏆.</li>
+    </ul>
 
-          <ul class="tasks">
-            <li class="task">
-              <h3>Уровень 1 — Закрепление (15–20 мин)</h3>
-              <p class="small">Быстрые правки для понимания механики и синтаксиса.</p>
-              <ul class="small">
-                <li>1. Уменьшите время паузы → игра станет быстрее.</li>
-                <li>2. Поставьте птицу стартовать в Y = 1 или 3.</li>
-                <li>3. Уберите кнопку B — пусть птица падает автоматически (имитация гравитации).</li>
-              </ul>
-            </li>
+    <h2>Код для Micro:bit</h2>
+    <pre style="text-align:left; background:rgba(0,0,0,0.3); padding:10px; border-radius:8px; font-family:Inter; font-size:0.9rem; color:#b9f3ff;">
+basic.forever(function() {
+    if (input.buttonIsPressed(Button.A) || input.acceleration(Dimension.Y) < -200) {
+        serial.writeLine("U")
+    }
+    basic.pause(100)
+})
+    </pre>
 
-            <li class="task">
-              <h3>Уровень 2 — Игровые фичи (20–25 мин)</h3>
-              <p class="small">Добавьте счёт, ускорение и визуальные подсказки.</p>
-              <ul class="small">
-                <li>1. Счёт — +1 за каждое успешно пройденное препятствие.</li>
-                <li>2. Игра постепенно ускоряется: уменьшайте паузу по таймеру.</li>
-                <li>3. При смерти показывайте счёт (scroll или showNumber).</li>
-              </ul>
-            </li>
+    <button class="btn" onclick="startLesson()">🚀 Начать игру</button>
+    <div class="hint">Кто станет чемпионом Flappy Battle?</div>
+  </section>
 
-            <li class="task">
-              <h3>Уровень 3 — Креатив (25–30 мин)</h3>
-              <p class="small">Добавьте одну заметную фишку, которую можно использовать в финале.</p>
-              <ul class="small">
-                <li>Бонусы: дополнительные очки за «звёздочку».</li>
-                <li>Множественные жизни: 3 жизни вместо одного удара.</li>
-                <li>Альтернативный контроль: акселерометр вместо кнопок.</li>
-                <li>Анимация птицы: меняйте яркость или мигание при полёте.</li>
-              </ul>
-            </li>
-          </ul>
-        </section>
-
-        <section class="card">
-          <h2 style="margin-top:0">Подсказки</h2>
-          <div class="hint">Подумайте, какая механика будет честной в соревновании: ускорение, бонусы или жизни — влияет на баланс между «лучшей» и «самой сложной» версиями.</div>
-
-          <h3 style="margin-top:12px">Короткие сниппеты</h3>
-          <div class="small">Гравитация (JS):</div>
-          <pre>basic.forever(function() {
-    bird.change(LedSpriteProperty.Y, 1)
-    basic.pause(700)
-})</pre>
-
-          <div class="small">Увеличение скорости со временем (псевдо):</div>
-          <pre>let speed = 1000
-// в цикле: basic.pause(speed)
-// каждые N тиков: speed = Math.max(150, speed - 50)</pre>
-
-          <div class="small">Счёт: увеличивать, когда препятствие уходит влево:</div>
-          <pre>if (obstacle.get(LedSpriteProperty.X) == 0) {
-  score += 1
-}
-// показывать score по кнопке B
-</pre>
-        </section>
-
-        <section class="card">
-          <h2 style="margin-top:0">Подготовка к финальной битве</h2>
-          <ul class="small">
-            <li>Определите, какие фичи разрешены (жизни, бонусы, ускорение).</li>
-            <li>Каждая команда делает &lt;= 2 заметных улучшения.</li>
-            <li>На следующей сессии перенесём логику в браузер и устроим турнир.</li>
-          </ul>
-        </section>
-      </main>
-
-      <aside>
-        <section class="card">
-          <h3 style="margin-top:0">Быстрый чек-лист для ученика</h3>
-          <ol class="small">
-            <li>Запусти примерный код на Micro:bit (демо на экране).</li>
-            <li>Внеси 1–2 изменения — протестируй.</li>
-            <li>Если есть идея — реализуй фичу и протестируй снова.</li>
-            <li>Запиши своё имя + краткое описание фичи (для финальной битвы).</li>
-          </ol>
-          <div style="margin-top:10px;text-align:center">
-            <button class="btn" onclick="window.print()">Распечатать лист</button>
-          </div>
-        </section>
-
-        <section class="card">
-          <h3 style="margin-top:0">Домашнее (необязательно)</h3>
-          <p class="small">Подумай над одной фичей, которую можно показать в финале: скетч интерфейса в браузере, идея бонуса, или простая баланс-механика.</p>
-        </section>
-      </aside>
-    </div>
-
-    <footer>
-      Готовы к финальной битве?
-    </footer>
-  </div>
+  <script>
+    function nextScreen() {
+      document.getElementById("screen1").classList.remove("active");
+      document.getElementById("screen2").classList.add("active");
+      document.body.style.background = "radial-gradient(circle at top, #000814, #190030)";
+    }
+    function startLesson() {
+      window.location.href = "https://zaebee.github.io/start/flappy/battle";
+    }
+  </script>
 </body>
 </html>
